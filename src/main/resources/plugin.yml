@@ -1,0 +1,53 @@
+name: WinterCraft
+main:  net.mcwintercraft.wintercraft.WinterCraft
+version: 0.0.1
+author: Mark
+commands:
+   mywarp:
+      description: Displayes owned warps.
+      usage: /<command>
+      aliases: [mywarps]
+      permission: wintercraft.mywarp
+      permission-message: You don't have <permission>
+   color:
+      description: Opens ChatColor options.
+      usage: /<command> <option> type /<command> help for a list of options.
+      aliases: [chatcolor, chatcolors, c]
+      permission: wintercraft.chatcolor
+      permission-message: You don't have <permission>
+   test:
+      description: Test command to do what ever.
+      usage: /<command>
+      permission: wintercraft.test
+      permission-message: You are not a scientits!
+   vote:
+      description: Vote links.
+      usage: /vote
+      permission: wintercraft.vote
+      permission-message: Lol report this to an admin.
+   discord:
+      description: Displays link to join discord server.
+      usage: /discord
+      permission: wintercraft.discord
+      permission-message: Lol report this to an admin.
+   website:
+      description: Displays website link.
+      usage: /website
+      permission: wintercraft.website
+      permission-message: Lol report this an admin.
+   rank:
+      description: Displays all ranks.
+      usage: /rank
+      aliases: [ranks]
+      permission: wintercraft.ranks
+      permission-message: Lol report this to an admin.
+   srfw:
+      description: shoot random firework.
+      usage: /<command> <player> <amount> <radius>
+      permission: wintercraft.srfw
+      permission-message: nah
+   sound:
+      description: sound options
+      usage: /<command>
+      permission: wintercraft.sound
+      permission-message: report this to an admin.
