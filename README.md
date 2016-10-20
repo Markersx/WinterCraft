@@ -6,3 +6,4 @@ Plugin for my minecraft server.
 [✗] Play time <br>
 [✓] Player warps <br>
 [✓] Fireworks <br>
+[✗] Spec Load implementation <br>
