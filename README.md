@@ -1,3 +1,8 @@
 # WinterCraft
 Plugin for my minecraft server.
-wip
+###Features:
+[✓] Chat colors <br>
+[✗] Chat sounds <br>
+[✗] Play time <br>
+[✓] Player warps <br>
+[✓] Fireworks <br>
