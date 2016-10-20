@@ -89,4 +89,10 @@
 		</repository>
 	</repositories>
 	
+	<scm>
+        	<connection>scm:git:https://github.com/Markersx/WinterCraft.git</connection>
+        	<developerConnection>scm:git:https://github.com/Markersx/WinterCraft.git</developerConnection>
+        	<url>https://github.com/Markersx/WinterCraft</url>
+   	</scm>
+	
 </project>
