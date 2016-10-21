@@ -7,3 +7,4 @@ Plugin for my minecraft server.
 [✓] Player warps <br>
 [✓] Fireworks <br>
 [✗] Spec Load implementation <br>
+[✗] Custom brewing/crafting/smelting/forging <br>
