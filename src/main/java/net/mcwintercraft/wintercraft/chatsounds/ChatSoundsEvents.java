@@ -18,9 +18,7 @@ import net.mcwintercraft.wintercraft.WinterCraftConfig;
 
 public class ChatSoundsEvents implements Listener {
 	//
-	// incomplete
-	// still working on it
-	// as I upload
+	// Going to redo most of this
 	//
 	WinterCraftConfig config = WinterCraftConfig.getConfig("chatsounds");
 
