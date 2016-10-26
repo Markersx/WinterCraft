@@ -27,8 +27,12 @@ public class ChatColorsEvents implements Listener {
 		Player p = e.getPlayer();
 		String puuid = p.getUniqueId().toString(); 
 		if (config.getConfig().getString(puuid) == null) {
-			ChatColorsEvents.loadchatcolorsconfig(puuid, p);
-		}
+			loadchatcolorsconfig(puuid, p);
+		}  else {
+			   if (p.getName() == config.getConfig().getString(puuid + ".name")) {
+				   config.getConfig().set(puuid + ".name", p.getName());
+			   }
+		   }
 	}
 	
 	@EventHandler
@@ -302,7 +306,7 @@ public class ChatColorsEvents implements Listener {
 		return cs;
 	}
 	
-	public static void loadchatcolorsconfig(String puuid, Player p) {
+	public void loadchatcolorsconfig(String puuid, Player p) {
 		config.getConfig().set(puuid + ".name", p.getName().toString());
 		config.getConfig().set(puuid + ".color", "WHITE");
 		config.getConfig().set(puuid + ".bold", Boolean.valueOf(false));

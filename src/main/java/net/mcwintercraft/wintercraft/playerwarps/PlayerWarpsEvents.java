@@ -49,7 +49,7 @@ public class PlayerWarpsEvents implements Listener {
 				}
 
 				warpsr = this.config.getConfig().getInt(puuid + ".warpsremaining");
-				if (warpsr >= 0) {
+				if (warpsr >= 1) {
 					warps = this.config.getConfig().getStringList(puuid + ".warps");
 					warplist = this.config.getConfig().getStringList("warplist");
 					warpowner = false;

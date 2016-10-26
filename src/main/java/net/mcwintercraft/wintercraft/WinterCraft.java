@@ -1,16 +1,18 @@
 package net.mcwintercraft.wintercraft;
 
+import net.mcwintercraft.wintercraft.cauldron.CauldronEvents;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsEvents;
+import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
 import net.mcwintercraft.wintercraft.commands.Command_chatcolor;
 import net.mcwintercraft.wintercraft.commands.Command_discord;
 import net.mcwintercraft.wintercraft.commands.Command_mywarp;
 import net.mcwintercraft.wintercraft.commands.Command_rank;
 import net.mcwintercraft.wintercraft.commands.Command_chatsound;
 import net.mcwintercraft.wintercraft.commands.Command_srfw;
+import net.mcwintercraft.wintercraft.commands.Command_test;
 import net.mcwintercraft.wintercraft.commands.Command_vote;
 import net.mcwintercraft.wintercraft.commands.Command_website;
 import net.mcwintercraft.wintercraft.playerwarps.PlayerWarpsEvents;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
@@ -49,15 +51,18 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		getCommand("website").setExecutor(new Command_website());
 		getCommand("srfw").setExecutor(new Command_srfw());
 		getCommand("sound").setExecutor(new Command_chatsound());
+		getCommand("test").setExecutor(new Command_test());
 		
 		registerEvents(this, 
 				new PlayerWarpsEvents(), 
 				new ChatColorsEvents(),
+				new ChatSoundsEvents(),
 				new PreventCosmetics(),
-				new FailMilk()
+				new FailMilk(),
+				new CauldronEvents()
 				);
 		
-		this.getLogger().info("WinterCraft Enabled");
+		this.getLogger().info("WinterCraft Enabled");        
 	}
 
 	public void onDisable() {

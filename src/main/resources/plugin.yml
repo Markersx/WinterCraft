@@ -1,7 +1,7 @@
 name: WinterCraft
 main:  net.mcwintercraft.wintercraft.WinterCraft
 version: 0.0.1
-author: Mark
+authors: [Markersx, Pentahexide]
 commands:
    mywarp:
       description: Displayes owned warps.
@@ -49,5 +49,10 @@ commands:
    sound:
       description: sound options
       usage: /<command>
-      permission: wintercraft.sound
+      permission: wintercraft.chatsound
       permission-message: report this to an admin.
+   sl:
+    description: Toggles spectator location reversion.
+    usage: /<command>
+    permission: sl.use
+    permission-message: You're not allowed to do that.

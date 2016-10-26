@@ -1,0 +1,9 @@
+#Answers the question "Is reversion on by default?"
+sl-default: true
+
+#List of commands to bar while in spectator mode
+barred-commands:
+- sethome
+- home
+
+#permission to override command-barring: sl.override

@@ -16,8 +16,8 @@ public class FailMilk implements Listener {
 		EntityType ent = e.getRightClicked().getType();
 		ItemStack hand = p.getInventory().getItemInMainHand();
 		if (hand.getType() == Material.BUCKET && ent != EntityType.COW && ent != EntityType.MUSHROOM_COW) {
-			e.setCancelled(true);
 			p.sendMessage("You tried to milk the " + e.getRightClicked().getName() + " but failed...");
+			return;
 		}
 	}
 }

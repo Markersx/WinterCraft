@@ -30,6 +30,14 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- Fanciful -->
+
+		<dependency>
+  			<groupId>mkremins</groupId>
+  			<artifactId>fanciful</artifactId>
+  			<version>0.4.0-SNAPSHOT</version>
+		</dependency>	
+		
 	</dependencies>
 	
 	<properties>
@@ -39,12 +47,7 @@
 	<!-- Build Settings -->
 
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
+		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -88,16 +91,21 @@
 	</issueManagement>
 	
 	<repositories>
+	
+		<!-- Spigot -->
+	
 		<repository>
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
+		
+		<!-- Fanciful -->
+		
+		<repository>
+    		<id>stealthyone-repo</id>
+    		<url>http://repo.stealthyone.com/content/groups/public</url>
+		</repository>
+		
 	</repositories>
-	
-	<scm>
-        	<connection>scm:git:https://github.com/Markersx/WinterCraft.git</connection>
-        	<developerConnection>scm:git:https://github.com/Markersx/WinterCraft.git</developerConnection>
-        	<url>https://github.com/Markersx/WinterCraft</url>
-   	</scm>
 	
 </project>
