@@ -8,3 +8,4 @@ Plugin for my minecraft server.
 [✓] Fireworks <br>
 [✗] Spec Load implementation <br>
 [✗] Custom brewing/crafting/smelting/forging <br>
+[✗] Cauldrons Holding POTIONS & LAVA <br>
