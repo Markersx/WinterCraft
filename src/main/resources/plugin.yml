@@ -25,11 +25,6 @@ commands:
       usage: /vote
       permission: wintercraft.vote
       permission-message: Lol report this to an admin.
-   discord:
-      description: Displays link to join discord server.
-      usage: /discord
-      permission: wintercraft.discord
-      permission-message: Lol report this to an admin.
    website:
       description: Displays website link.
       usage: /website
@@ -52,7 +47,17 @@ commands:
       permission: wintercraft.chatsound
       permission-message: report this to an admin.
    sl:
-    description: Toggles spectator location reversion.
-    usage: /<command>
-    permission: sl.use
-    permission-message: You're not allowed to do that.
+      description: Toggles spectator location reversion.
+      usage: /<command>
+      permission: sl.use
+      permission-message: You're not allowed to do that.
+   fakeop:
+      description: Fake op players.
+      usage: /<command> <name> or /<command> *
+      permission: wintercraft.fakeop
+      permission-message: Opped
+   fakedeop:
+      description: Fake deop players.
+      usage: /<command> <name> or /<command> *
+      permission: wintercraft.fakedeop
+      permission-message: De-opped

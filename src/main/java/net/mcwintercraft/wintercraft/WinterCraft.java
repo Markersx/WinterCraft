@@ -4,10 +4,11 @@ import net.mcwintercraft.wintercraft.cauldron.CauldronEvents;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsEvents;
 import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
 import net.mcwintercraft.wintercraft.commands.Command_chatcolor;
-import net.mcwintercraft.wintercraft.commands.Command_discord;
 import net.mcwintercraft.wintercraft.commands.Command_mywarp;
 import net.mcwintercraft.wintercraft.commands.Command_rank;
 import net.mcwintercraft.wintercraft.commands.Command_chatsound;
+import net.mcwintercraft.wintercraft.commands.Command_fakedeop;
+import net.mcwintercraft.wintercraft.commands.Command_fakeop;
 import net.mcwintercraft.wintercraft.commands.Command_srfw;
 import net.mcwintercraft.wintercraft.commands.Command_test;
 import net.mcwintercraft.wintercraft.commands.Command_vote;
@@ -46,12 +47,13 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		getCommand("color").setExecutor(new Command_chatcolor());
 		getCommand("mywarp").setExecutor(new Command_mywarp());
 		getCommand("vote").setExecutor(new Command_vote());
-		getCommand("discord").setExecutor(new Command_discord());
 		getCommand("rank").setExecutor(new Command_rank());
 		getCommand("website").setExecutor(new Command_website());
 		getCommand("srfw").setExecutor(new Command_srfw());
 		getCommand("sound").setExecutor(new Command_chatsound());
 		getCommand("test").setExecutor(new Command_test());
+		getCommand("fakeop").setExecutor(new Command_fakeop());
+		getCommand("fakedeop").setExecutor(new Command_fakedeop());
 		
 		registerEvents(this, 
 				new PlayerWarpsEvents(), 
@@ -66,9 +68,12 @@ public class WinterCraft extends JavaPlugin implements Listener {
 	}
 
 	public void onDisable() {
+		
 		this.playerwarpsconfig.saveConfig();
 		this.chatcolorsconfig.saveConfig();
+		
 		plugin = null;
+		
 		this.getLogger().info("WinterCraft Disabled");
 	}
 	
