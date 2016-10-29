@@ -30,6 +30,15 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!--CraftBukkit-->
+		
+	    <dependency>
+			<groupId>org.bukkit</groupId>
+			<artifactId>craftbukkit</artifactId>
+			<version>1.10.2-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+	    </dependency>
+		
 		<!-- Fanciful -->
 
 		<dependency>
@@ -49,6 +58,7 @@
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+		
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
@@ -57,6 +67,32 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			
+			<!-- COPIED AND PASTED FROM SOMEWHERE -->
+			<!-- BUT IT WOKRS -->
+			<plugin>
+		    	<groupId>org.apache.maven.plugins</groupId>
+		   		<artifactId>maven-shade-plugin</artifactId>
+		    	<version>2.1</version>
+		    	<executions>
+		      		<execution>
+		        		<phase>package</phase>
+		        		<goals>
+		          			<goal>shade</goal>
+		        		</goals>
+	        			<configuration>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+	       					<minimizeJar>true</minimizeJar>
+					        <artifactSet>
+					        	<includes>
+					        		<include>mkremins:fanciful</include>
+					       			<include>org.json:json</include>
+					        	</includes>
+							</artifactSet>
+	        			</configuration>
+		      		</execution>
+		   	 	</executions>
+		  	</plugin>
 		</plugins>
 	</build>
 
