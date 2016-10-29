@@ -21,10 +21,14 @@ public class ChatSoundsInventory {
 	
 	public static Inventory soundinv = Bukkit.createInventory(null, 45, "Sound Options");
 	
-	////////////////////////////////////////////////////////////////////////////////////	
+	////////////////////////////////////////BLOCKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////BLOCKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////BLOCKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	public static Inventory blockinv = Bukkit.createInventory(null, 54, "Block Sounds");
 	static ItemStack blockinv_item = new ItemStack(Material.RECORD_8);
 	
+	public static Inventory blockinv_anvil = Bukkit.createInventory(null, 9, "Anvil Sounds");
+	static ItemStack blockinv_anvil_item = new ItemStack(Material.ANVIL);
 	static ItemStack block_anvil_break = new ItemStack(Material.ANVIL, 1, (byte) 2);
 	static ItemStack block_anvil_destroy = new ItemStack(Material.ANVIL, 1, (byte) 1);
 	static ItemStack block_anvil_fall = new ItemStack(Material.ANVIL);
@@ -34,8 +38,8 @@ public class ChatSoundsInventory {
 	static ItemStack block_anvil_step = new ItemStack(Material.ANVIL);
 	static ItemStack block_anvil_use = new ItemStack(Material.ANVIL);
 	
-	static ItemStack block_brewing_stand_brew = new ItemStack(Material.BREWING_STAND_ITEM);
-	
+	public static Inventory blockinv_chest = Bukkit.createInventory(null, 9, "Chest Sounds");
+	static ItemStack blockinv_chest_item = new ItemStack(Material.CHEST);
 	static ItemStack block_chest_close = new ItemStack(Material.CHEST);
 	static ItemStack block_chest_locked = new ItemStack(Material.TRAPPED_CHEST);
 	static ItemStack block_chest_open = new ItemStack(Material.CHEST);
@@ -43,56 +47,69 @@ public class ChatSoundsInventory {
 	static ItemStack block_chorus_flower_death = new ItemStack(Material.CHORUS_FLOWER);
 	static ItemStack block_chorus_flower_grow = new ItemStack(Material.CHORUS_FRUIT_POPPED);
 	
+	public static Inventory blockinv_cloth = Bukkit.createInventory(null, 9, "Wool Sounds");
+	static ItemStack blockinv_cloth_item = new ItemStack(Material.WOOL);
 	static ItemStack block_cloth_break = new ItemStack(Material.WOOL);
 	static ItemStack block_cloth_fall = new ItemStack(Material.WOOL);
 	static ItemStack block_cloth_hit = new ItemStack(Material.WOOL);
 	static ItemStack block_cloth_place = new ItemStack(Material.WOOL);
 	static ItemStack block_cloth_step = new ItemStack(Material.WOOL);
 	
-	static ItemStack block_comparator_click = new ItemStack(Material.REDSTONE_COMPARATOR);
-	
+	public static Inventory blockinv_dispenser = Bukkit.createInventory(null, 9, "Dispenser Sounds");
+	static ItemStack blockinv_dispenser_item = new ItemStack(Material.DISPENSER);
 	static ItemStack block_dispenser_dispense = new ItemStack(Material.DISPENSER);
 	static ItemStack block_dispenser_fail = new ItemStack(Material.DISPENSER);
 	static ItemStack block_dispenser_launch = new ItemStack(Material.DISPENSER);
 	
-	static ItemStack block_enchantment_table_use = new ItemStack(Material.ENCHANTMENT_TABLE);
-	
 	static ItemStack block_enderchest_close = new ItemStack(Material.ENDER_CHEST);
 	static ItemStack block_enderchest_open = new ItemStack(Material.ENDER_CHEST);
-	
-	static ItemStack block_end_gateway_spawn = new ItemStack(Material.END_GATEWAY);
-	
+
 	static ItemStack block_fence_gate_close = new ItemStack(Material.FENCE_GATE);
 	static ItemStack block_fence_gate_open = new ItemStack(Material.FENCE_GATE);
 	
 	static ItemStack block_fire_ambient = new ItemStack(Material.FIRE);
 	static ItemStack block_fire_extinguish = new ItemStack(Material.FIRE);
 	
-	static ItemStack block_furnace_fire_crackle = new ItemStack(Material.BURNING_FURNACE);
-	
+	public static Inventory blockinv_glass = Bukkit.createInventory(null, 9, "Glass Sounds");
+	static ItemStack blockinv_glass_item = new ItemStack(Material.GLASS);
 	static ItemStack block_glass_break = new ItemStack(Material.GLASS);
 	static ItemStack block_glass_fall = new ItemStack(Material.GLASS);
 	static ItemStack block_glass_hit = new ItemStack(Material.GLASS);
 	static ItemStack block_glass_place = new ItemStack(Material.GLASS);
 	static ItemStack block_glass_step = new ItemStack(Material.GLASS);
 	
+	public static Inventory blockinv_grass = Bukkit.createInventory(null, 9, "Grass Sounds");
+	static ItemStack blockinv_grass_item = new ItemStack(Material.GRASS);
 	static ItemStack block_grass_break = new ItemStack(Material.GRASS);
 	static ItemStack block_grass_fall = new ItemStack(Material.GRASS);
 	static ItemStack block_grass_hit = new ItemStack(Material.GRASS);
 	static ItemStack block_grass_place = new ItemStack(Material.GRASS);
 	static ItemStack block_grass_step = new ItemStack(Material.GRASS);
 	
+	public static Inventory blockinv_gravel = Bukkit.createInventory(null, 9, "Gravel Sounds");
+	static ItemStack blockinv_gravel_item = new ItemStack(Material.GRAVEL);
 	static ItemStack block_gravel_break = new ItemStack(Material.GRAVEL);
 	static ItemStack block_gravel_fall = new ItemStack(Material.GRAVEL);
 	static ItemStack block_gravel_hit = new ItemStack(Material.GRAVEL);
 	static ItemStack block_gravel_place = new ItemStack(Material.GRAVEL);
 	static ItemStack block_gravel_step = new ItemStack(Material.GRAVEL);
 	
+	public static Inventory blockinv_iron = Bukkit.createInventory(null, 18, "Iron Sounds");
+	static ItemStack blockinv_iron_item = new ItemStack(Material.IRON_BLOCK);
 	static ItemStack block_iron_door_close = new ItemStack(Material.IRON_DOOR);
 	static ItemStack block_iron_door_open = new ItemStack(Material.IRON_DOOR);
 	static ItemStack block_iron_trapdoor_close = new ItemStack(Material.IRON_TRAPDOOR);
 	static ItemStack block_iron_trapdoor_open = new ItemStack(Material.IRON_TRAPDOOR);
+	static ItemStack block_metal_break = new ItemStack(Material.IRON_BLOCK);
+	static ItemStack block_metal_fall = new ItemStack(Material.IRON_BLOCK);
+	static ItemStack block_metal_hit = new ItemStack(Material.IRON_BLOCK);
+	static ItemStack block_metal_place = new ItemStack(Material.IRON_BLOCK);
+	static ItemStack block_metal_pressureplate_click_off = new ItemStack(Material.IRON_PLATE);
+	static ItemStack block_metal_pressureplate_click_on = new ItemStack(Material.IRON_PLATE);
+	static ItemStack block_metal_step = new ItemStack(Material.IRON_PLATE);
 	
+	public static Inventory blockinv_ladder = Bukkit.createInventory(null, 9, "Ladder Sounds");
+	static ItemStack blockinv_ladder_item = new ItemStack(Material.LADDER);
 	static ItemStack block_ladder_break = new ItemStack(Material.LADDER);
 	static ItemStack block_ladder_fall = new ItemStack(Material.LADDER);
 	static ItemStack block_ladder_hit = new ItemStack(Material.LADDER);
@@ -103,16 +120,9 @@ public class ChatSoundsInventory {
 	static ItemStack block_lava_extinguish = new ItemStack(Material.LAVA);
 	static ItemStack block_lava_pop = new ItemStack(Material.LAVA);
 	
-	static ItemStack block_lever_click = new ItemStack(Material.LEVER);
 	
-	static ItemStack block_metal_break = new ItemStack(Material.IRON_BLOCK);
-	static ItemStack block_metal_fall = new ItemStack(Material.IRON_BLOCK);
-	static ItemStack block_metal_hit = new ItemStack(Material.IRON_BLOCK);
-	static ItemStack block_metal_place = new ItemStack(Material.IRON_BLOCK);
-	static ItemStack block_metal_pressureplate_click_off = new ItemStack(Material.IRON_PLATE);
-	static ItemStack block_metal_pressureplate_click_on = new ItemStack(Material.IRON_PLATE);
-	static ItemStack block_metal_step = new ItemStack(Material.IRON_PLATE);
-	
+	public static Inventory blockinv_note = Bukkit.createInventory(null, 9, "Note Sounds");
+	static ItemStack blockinv_note_item = new ItemStack(Material.GLASS);
 	static ItemStack block_note_basedrum = new ItemStack(Material.NOTE_BLOCK);
 	static ItemStack block_note_bass = new ItemStack(Material.NOTE_BLOCK);
 	static ItemStack block_note_harp = new ItemStack(Material.NOTE_BLOCK);
@@ -127,26 +137,33 @@ public class ChatSoundsInventory {
 	static ItemStack block_portal_travel = new ItemStack(Material.PORTAL);
 	static ItemStack block_portal_trigger = new ItemStack(Material.PORTAL);
 	
-	static ItemStack block_redstone_torch_burnout = new ItemStack(Material.REDSTONE_TORCH_OFF);
 	
+	public static Inventory blockinv_sand = Bukkit.createInventory(null, 9, "San Sounds");
+	static ItemStack blockinv_sand_item = new ItemStack(Material.SAND);
 	static ItemStack block_sand_break = new ItemStack(Material.SAND);
 	static ItemStack block_sand_fall = new ItemStack(Material.SAND);
 	static ItemStack block_sand_hit = new ItemStack(Material.SAND);
 	static ItemStack block_sand_place = new ItemStack(Material.SAND);
 	static ItemStack block_sand_step = new ItemStack(Material.SAND);
 	
+	public static Inventory blockinv_slime = Bukkit.createInventory(null, 9, "Slime Sounds");
+	static ItemStack blockinv_slime_item = new ItemStack(Material.GLASS);
 	static ItemStack block_slime_break = new ItemStack(Material.SLIME_BLOCK);
 	static ItemStack block_slime_fall = new ItemStack(Material.SLIME_BLOCK);
 	static ItemStack block_slime_hit = new ItemStack(Material.SLIME_BLOCK);
 	static ItemStack block_slime_place = new ItemStack(Material.SLIME_BLOCK);
 	static ItemStack block_slime_step = new ItemStack(Material.SLIME_BLOCK);
 	
+	public static Inventory blockinv_snow = Bukkit.createInventory(null, 9, "Snow Sounds");
+	static ItemStack blockinv_snow_item = new ItemStack(Material.SNOW_BLOCK);
 	static ItemStack block_snow_break = new ItemStack(Material.SNOW_BLOCK);
 	static ItemStack block_snow_fall = new ItemStack(Material.SNOW_BLOCK);
 	static ItemStack block_snow_hit = new ItemStack(Material.SNOW_BLOCK);
 	static ItemStack block_snow_place = new ItemStack(Material.SNOW_BLOCK);
 	static ItemStack block_snow_step = new ItemStack(Material.SNOW_BLOCK);
 	
+	public static Inventory blockinv_stone = Bukkit.createInventory(null, 18, "Glass Sounds");
+	static ItemStack blockinv_stone_item = new ItemStack(Material.GLASS);
 	static ItemStack block_stone_break = new ItemStack(Material.STONE);
 	static ItemStack block_stone_button_click_off = new ItemStack(Material.STONE_BUTTON);
 	static ItemStack block_stone_button_click_on = new ItemStack(Material.STONE_BUTTON);
@@ -157,20 +174,19 @@ public class ChatSoundsInventory {
 	static ItemStack block_stone_pressureplate_click_on = new ItemStack(Material.STONE_PLATE);
 	static ItemStack block_stone_step = new ItemStack(Material.STONE_PLATE);
 	
+	public static Inventory blockinv_tripwire = Bukkit.createInventory(null, 9, "Tripwire Sounds");
+	static ItemStack blockinv_tripwire_item = new ItemStack(Material.TRIPWIRE_HOOK);
 	static ItemStack block_tripwire_attach = new ItemStack(Material.TRIPWIRE_HOOK);
 	static ItemStack block_tripwire_click_off = new ItemStack(Material.TRIPWIRE_HOOK);
 	static ItemStack block_tripwire_click_on = new ItemStack(Material.TRIPWIRE_HOOK);
 	static ItemStack block_tripwire_detach = new ItemStack(Material.TRIPWIRE_HOOK);
 	
-	static ItemStack block_waterlily_place = new ItemStack(Material.WATER_LILY);
-	
-	static ItemStack block_water_ambient = new ItemStack(Material.WATER);
-	
+	public static Inventory blockinv_wood = Bukkit.createInventory(null, 18, "Wood Sounds");
+	static ItemStack blockinv_wood_item = new ItemStack(Material.WOOD);
 	static ItemStack block_wooden_door_close = new ItemStack(Material.WOOD_DOOR);
 	static ItemStack block_wooden_door_open = new ItemStack(Material.WOOD_DOOR);
 	static ItemStack block_wooden_trapdoor_close = new ItemStack(Material.TRAP_DOOR);
 	static ItemStack block_wooden_trapdoor_open = new ItemStack(Material.TRAP_DOOR);
-	
 	static ItemStack block_wood_break = new ItemStack(Material.WOOD);
 	static ItemStack block_wood_button_click_off = new ItemStack(Material.WOOD_BUTTON);
 	static ItemStack block_wood_button_click_on = new ItemStack(Material.WOOD_BUTTON);
@@ -181,9 +197,22 @@ public class ChatSoundsInventory {
 	static ItemStack block_wood_pressureplate_click_on = new ItemStack(Material.WOOD_PLATE);
 	static ItemStack block_wood_step = new ItemStack(Material.WOOD_PLATE);	
 	
-	//ENTITY
+	static ItemStack block_brewing_stand_brew = new ItemStack(Material.BREWING_STAND_ITEM);
+	static ItemStack block_comparator_click = new ItemStack(Material.REDSTONE_COMPARATOR);
+	static ItemStack block_enchantment_table_use = new ItemStack(Material.ENCHANTMENT_TABLE);
+	static ItemStack block_lever_click = new ItemStack(Material.LEVER);
+	static ItemStack block_waterlily_place = new ItemStack(Material.WATER_LILY);
+	static ItemStack block_water_ambient = new ItemStack(Material.WATER);
+	static ItemStack block_redstone_torch_burnout = new ItemStack(Material.REDSTONE_TORCH_OFF);
+	static ItemStack block_furnace_fire_crackle = new ItemStack(Material.BURNING_FURNACE);
+	static ItemStack block_end_gateway_spawn = new ItemStack(Material.END_GATEWAY);
+	
+	////////////////////////////////////////ENTITY\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////ENTITY\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////ENTITY\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	public static Inventory entityinv = Bukkit.createInventory(null, 54, "Entity Sounds");
 	static ItemStack entityinv_item = new ItemStack(Material.RECORD_9);
+	
 	static ItemStack entity_armorstand_break = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_fall = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_hit = new ItemStack(Material.ARMOR_STAND);
@@ -542,7 +571,9 @@ public class ChatSoundsInventory {
 	static ItemStack entity_zombie_villager_hurt = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
 	static ItemStack entity_zombie_villager_step = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
 	
-	//ITEM
+	////////////////////////////////////////ITEM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////ITEM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////ITEM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	public static Inventory iteminv = Bukkit.createInventory(null, 54, "Item Sounds");
 	static ItemStack iteminv_item = new ItemStack(Material.RECORD_4);
 	
@@ -577,7 +608,9 @@ public class ChatSoundsInventory {
 	
 	static ItemStack item_shovel_flatten = new ItemStack(Material.DIAMOND_SPADE);
 	
-	//SONG
+	////////////////////////////////////////SONG\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////SONG\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////SONG\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	public static Inventory songinv = Bukkit.createInventory(null, 54, "Music Sounds");
 	static ItemStack songinv_item = new ItemStack(Material.GOLD_RECORD);
 	static ItemStack music_creative = new ItemStack(Material.JUKEBOX);
@@ -602,7 +635,9 @@ public class ChatSoundsInventory {
 	static ItemStack record_ward = new ItemStack(Material.RECORD_10);
 	
 	
-	//MISC
+	////////////////////////////////////////MISC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////MISC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	////////////////////////////////////////MISC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	public static Inventory miscinv = Bukkit.createInventory(null, 9, "Misc Sounds");
 	static ItemStack miscinv_item = new ItemStack(Material.RECORD_12);
 	//WEATHER

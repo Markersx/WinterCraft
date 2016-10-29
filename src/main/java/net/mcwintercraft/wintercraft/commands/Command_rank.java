@@ -1,22 +1,138 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+
+import mkremins.fanciful.FancyMessage;
 
 public class Command_rank implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("rank") && sender instanceof Player) {
-			Player player = (Player) sender;
-			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-			Bukkit.getServer().dispatchCommand(console, "tellraw " + player.getName() + " [\"\",{\"text\":\"- DONOR RANKS -\",\"bold\":true,\"color\":\"green\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"http://www.mcwintercraft.net/shop\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Donor ranks can be\nbought at the website\nClick to visit the shop\"}},{\"text\":\"\\n[SQUIRREL]\\n\",\"bold\":true},{\"text\":\"[PENGUIN]\",\"bold\":true,\"color\":\"gray\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[DOE]\",\"bold\":true,\"color\":\"light_purple\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[BUCK]\",\"bold\":true,\"color\":\"blue\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[WOLF]\",\"bold\":true,\"color\":\"dark_gray\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[FOX]\",\"bold\":true,\"color\":\"yellow\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[BEAR]\",\"bold\":true,\"color\":\"gold\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[OWL]\",\"bold\":true,\"color\":\"aqua\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[EAGLE]\",\"bold\":true,\"color\":\"red\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"- SPECIAL RANKS -\",\"bold\":true,\"color\":\"green\",\"clickEvent\":{\"action\":\"open_url\",\"value\":\"http://www.mcwintercraft.net/apply\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"Special ranks canbe gained by applyingClick to apply\"}},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[YT]\",\"bold\":true,\"color\":\"red\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"- Spectator mode\"}},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[MOD]\",\"bold\":true,\"color\":\"green\"},{\"text\":\"\\n\",\"bold\":true},{\"text\":\"[ADMIN]\",\"bold\":true,\"color\":\"dark_aqua\"}]");
+			Player p = (Player) sender;
+			FancyMessage fm = new FancyMessage("- DONOR RANKS -\n");
+			fm.color(ChatColor.GREEN);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Donor Ranks can be\n" + 
+					ChatColor.BOLD + "bought at the shop\n" + 
+					ChatColor.BOLD + "click to visit");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[SQUIRREL]\n");
+			fm.color(ChatColor.WHITE);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 1\n" + 
+					ChatColor.BOLD + "Homes: 1\n" + 
+					ChatColor.BOLD + "Warps: 1");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[PENGUIN]\n");
+			fm.color(ChatColor.GRAY);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "- Nickname\n" + 
+					ChatColor.BOLD + "- Hat\n" + 
+					ChatColor.BOLD + "- Colors" +
+					ChatColor.BOLD + "Chests: 2\n" + 
+					ChatColor.BOLD + "Homes: 2\n" + 
+					ChatColor.BOLD + "Warps: 2");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[DOE]\n");
+			fm.color(ChatColor.LIGHT_PURPLE);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 3\n" + 
+					ChatColor.BOLD + "Homes: 3\n" + 
+					ChatColor.BOLD + "Warps: 3");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[BUCK]\n");
+			fm.color(ChatColor.BLUE);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 4\n" + 
+					ChatColor.BOLD + "Homes: 4\n" + 
+					ChatColor.BOLD + "Warps: 4");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[WOLF]\n");
+			fm.color(ChatColor.DARK_GRAY);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 5\n" + 
+					ChatColor.BOLD + "Homes: 5\n" + 
+					ChatColor.BOLD + "Warps: 5");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[FOX]\n");
+			fm.color(ChatColor.YELLOW);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 6\n" + 
+					ChatColor.BOLD + "Homes: 6\n" + 
+					ChatColor.BOLD + "Warps: 6");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[BEAR]\n");
+			fm.color(ChatColor.GOLD);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 7\n" + 
+					ChatColor.BOLD + "Homes: 7\n" + 
+					ChatColor.BOLD + "Warps: 7");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[OWL]\n");
+			fm.color(ChatColor.AQUA);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 8\n" + 
+					ChatColor.BOLD + "Homes: 8\n" + 
+					ChatColor.BOLD + "Warps: 8");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("[EAGLE]\n");
+			fm.color(ChatColor.RED);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Chests: 9\n" + 
+					ChatColor.BOLD + "Homes: 9\n" + 
+					ChatColor.BOLD + "Warps: 9");
+			fm.link("http://www.mcwintercraft.net/shop");
+			
+			fm.then("- SPECIAL RANKS -\n");
+			fm.color(ChatColor.GREEN);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Special Ranks can be\n" + 
+					ChatColor.BOLD + "obtained by applying\n" + 
+					ChatColor.BOLD + "click to apply");
+			fm.link("http://www.mcwintercraft.net/apply");
+			
+			fm.then("[YT]\n");
+			fm.color(ChatColor.RED);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "Spectate\n");
+			fm.link("http://www.mcwintercraft.net/apply");
+			
+			fm.then("[MOD]\n");
+			fm.color(ChatColor.GREEN);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "- Mute\n" + 
+					ChatColor.BOLD + "- Jail\n" + 
+					ChatColor.BOLD + "- Kick\n" +
+					ChatColor.BOLD + "- Spectate");
+			fm.link("http://www.mcwintercraft.net/apply");
+			
+			fm.then("[ADMIN]");
+			fm.color(ChatColor.RED);
+			fm.style(ChatColor.BOLD);
+			fm.tooltip(ChatColor.BOLD + "- Teleport\n" + 
+					ChatColor.BOLD + "- Ban Hammer\n" + 
+					ChatColor.BOLD + "- Vanish");
+			fm.link("http://www.mcwintercraft.net/apply");
+			
+			fm.send(p);
 			return true;
 		} else {
 			sender.sendMessage("Lol no");
 			return true;
 		}
 	}
+	
+	
 }
