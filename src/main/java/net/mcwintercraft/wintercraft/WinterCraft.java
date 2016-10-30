@@ -61,6 +61,7 @@ public class WinterCraft extends JavaPlugin implements Listener {
 				new ChatSoundsEvents(),
 				new PreventCosmetics(),
 				new FailMilk(),
+				new Slimeball(),
 				new CauldronEvents()
 				);
 		
