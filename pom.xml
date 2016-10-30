@@ -6,7 +6,7 @@
 
 	<!-- The Basics -->
 	
-	<groupId>net.mcwintercrat</groupId>
+	<groupId>net.mcwintercraft</groupId>
 	<artifactId>WinterCraft</artifactId>
 	<version>0.0.1</version>
 	
@@ -48,7 +48,9 @@
 		</dependency>	
 		
 	</dependencies>
-	
+
+	<!-- Properties -->
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -56,7 +58,7 @@
 	<!-- Build Settings -->
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 		
 			<plugin>
@@ -69,7 +71,7 @@
 			</plugin>
 			
 			<!-- COPIED AND PASTED FROM SOMEWHERE -->
-			<!-- BUT IT WOKRS -->
+			<!-- BUT IT WORKS -->
 			<plugin>
 		    	<groupId>org.apache.maven.plugins</groupId>
 		   		<artifactId>maven-shade-plugin</artifactId>

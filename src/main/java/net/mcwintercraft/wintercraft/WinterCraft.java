@@ -3,16 +3,7 @@ package net.mcwintercraft.wintercraft;
 import net.mcwintercraft.wintercraft.cauldron.CauldronEvents;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsEvents;
 import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
-import net.mcwintercraft.wintercraft.commands.Command_chatcolor;
-import net.mcwintercraft.wintercraft.commands.Command_mywarp;
-import net.mcwintercraft.wintercraft.commands.Command_rank;
-import net.mcwintercraft.wintercraft.commands.Command_chatsound;
-import net.mcwintercraft.wintercraft.commands.Command_fakedeop;
-import net.mcwintercraft.wintercraft.commands.Command_fakeop;
-import net.mcwintercraft.wintercraft.commands.Command_srfw;
-import net.mcwintercraft.wintercraft.commands.Command_test;
-import net.mcwintercraft.wintercraft.commands.Command_vote;
-import net.mcwintercraft.wintercraft.commands.Command_website;
+import net.mcwintercraft.wintercraft.commands.*;
 import net.mcwintercraft.wintercraft.playerwarps.PlayerWarpsEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,14 +15,10 @@ public class WinterCraft extends JavaPlugin implements Listener {
 	
 	private static WinterCraft plugin;
 	
-	WinterCraftConfig playerwarpsconfig;
-	WinterCraftConfig chatcolorsconfig;
-	WinterCraftConfig chatsoundsconfig;
-	
-	FileConfiguration playerwarpsfile;
-	FileConfiguration chatcolorsfile;
-	FileConfiguration chatsoundsfile;
-	
+	private WinterCraftConfig playerwarpsconfig;
+	private WinterCraftConfig chatcolorsconfig;
+	private WinterCraftConfig chatsoundsconfig;
+
 	public void onEnable() {
 		
 		plugin = this;
@@ -39,11 +26,11 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		playerwarpsconfig = WinterCraftConfig.getConfig("playerwarps");
 		chatcolorsconfig = WinterCraftConfig.getConfig("chatcolors");
 		chatsoundsconfig = WinterCraftConfig.getConfig("chatsounds");
-		
-		playerwarpsfile = playerwarpsconfig.getConfig();
-		chatcolorsfile = chatcolorsconfig.getConfig();
-		chatsoundsfile = chatsoundsconfig.getConfig();
-		
+
+		//FileConfiguration playerwarpsfile = playerwarpsconfig.getConfig();
+		//FileConfiguration chatcolorsfile = chatcolorsconfig.getConfig();
+		//FileConfiguration chatsoundsfile = chatsoundsconfig.getConfig();
+
 		getCommand("color").setExecutor(new Command_chatcolor());
 		getCommand("mywarp").setExecutor(new Command_mywarp());
 		getCommand("vote").setExecutor(new Command_vote());
@@ -61,7 +48,7 @@ public class WinterCraft extends JavaPlugin implements Listener {
 				new ChatSoundsEvents(),
 				new PreventCosmetics(),
 				new FailMilk(),
-				new Slimeball(),
+				new SlimeBall(),
 				new CauldronEvents()
 				);
 		
@@ -72,13 +59,14 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		
 		this.playerwarpsconfig.saveConfig();
 		this.chatcolorsconfig.saveConfig();
+        this.chatsoundsconfig.saveConfig();
 		
 		plugin = null;
 		
 		this.getLogger().info("WinterCraft Disabled");
 	}
 	
-	public static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
+	private static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
 		for (Listener listener : listeners) {
 			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
 		}

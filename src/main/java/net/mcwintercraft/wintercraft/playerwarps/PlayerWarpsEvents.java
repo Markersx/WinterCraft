@@ -1,7 +1,5 @@
 package net.mcwintercraft.wintercraft.playerwarps;
 
-import java.util.Iterator;
-import java.util.List;
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
 import net.mcwintercraft.wintercraft.WinterCraftUtil;
 import net.md_5.bungee.api.ChatColor;
@@ -10,9 +8,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class PlayerWarpsEvents implements Listener {
 	
-	WinterCraftConfig config = WinterCraftConfig.getConfig("playerwarps");
+	private final WinterCraftConfig config = WinterCraftConfig.getConfig("playerwarps");
 
 	@EventHandler
 	public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent e) {
@@ -28,7 +29,7 @@ public class PlayerWarpsEvents implements Listener {
 		Iterator<String> arg10;
 		if (e.getMessage().toLowerCase().startsWith("/setwarp")
 				|| e.getMessage().toLowerCase().startsWith("/createwarp")) {
-			msg = e.getMessage().toLowerCase().toString().split(" ");
+			msg = e.getMessage().toLowerCase().split(" ");
 			if ((!msg[0].equalsIgnoreCase("/setwarp") || msg.length != 2 || WinterCraftUtil.isInt(msg[1]))
 					&& (!msg[0].equalsIgnoreCase("/createwarp") || msg.length != 2 || WinterCraftUtil.isInt(msg[1]))) {
 				e.setCancelled(true);
@@ -38,8 +39,8 @@ public class PlayerWarpsEvents implements Listener {
 				this.config.reloadConfig();
 				this.config.saveConfig();
 				if (this.config.getConfig().getString(puuid) == null) {
-					this.config.getConfig().set(puuid + ".username", p.getName().toString());
-					this.config.getConfig().set(puuid + ".warpsremaining", Integer.valueOf(10));
+					this.config.getConfig().set(puuid + ".username", p.getName());
+					this.config.getConfig().set(puuid + ".warpsremaining", 10);
 					this.config.saveConfig();
 					this.config.reloadConfig();
 				}
@@ -57,7 +58,7 @@ public class PlayerWarpsEvents implements Listener {
 					arg10 = warplist.iterator();
 
 					while (arg10.hasNext()) {
-						awarp = (String) arg10.next();
+						awarp = arg10.next();
 						if (msg[1].equalsIgnoreCase(awarp)) {
 							warpowner = true;
 						}
@@ -67,7 +68,7 @@ public class PlayerWarpsEvents implements Listener {
 						arg10 = warps.iterator();
 
 						while (arg10.hasNext()) {
-							awarp = (String) arg10.next();
+							awarp = arg10.next();
 							if (msg[1].equalsIgnoreCase(awarp)) {
 								warpexists = true;
 							}
@@ -83,7 +84,7 @@ public class PlayerWarpsEvents implements Listener {
 							warps.add(msg[1]);
 							this.config.getConfig().set(puuid + ".warps", warps);
 							this.config.getConfig().set("warplist", warplist);
-							this.config.getConfig().set(puuid + ".warpsremaining", Integer.valueOf(warpsr - 1));
+							this.config.getConfig().set(puuid + ".warpsremaining", warpsr - 1);
 						}
 
 						warpsr = this.config.getConfig().getInt(puuid + ".warpsremaining");
@@ -108,14 +109,14 @@ public class PlayerWarpsEvents implements Listener {
 		}
 
 		if (e.getMessage().toLowerCase().startsWith("/delwarp")) {
-			msg = e.getMessage().toLowerCase().toString().split(" ");
+			msg = e.getMessage().toLowerCase().split(" ");
 			if (msg[0].equalsIgnoreCase("/delwarp") && msg.length == 2) {
 				this.config.saveConfig();
 				this.config.reloadConfig();
 				if (this.config.getConfig().getString(puuid) == null) {
-					this.config.getConfig().set(puuid + ".username", p.getName().toString());
+					this.config.getConfig().set(puuid + ".username", p.getName());
 					if (p.hasPermission("wintercraft.warp.cow")) {
-						this.config.getConfig().set(puuid + ".warpsremaining", Integer.valueOf(10));
+						this.config.getConfig().set(puuid + ".warpsremaining", 10);
 					}
 
 					this.config.saveConfig();
@@ -135,7 +136,7 @@ public class PlayerWarpsEvents implements Listener {
 					arg10 = warplist.iterator();
 
 					while (arg10.hasNext()) {
-						awarp = (String) arg10.next();
+						awarp = arg10.next();
 						if (msg[1].equalsIgnoreCase(awarp)) {
 							warpexists = true;
 						}
@@ -150,18 +151,18 @@ public class PlayerWarpsEvents implements Listener {
 					arg10 = warps.iterator();
 
 					while (arg10.hasNext()) {
-						awarp = (String) arg10.next();
+						awarp = arg10.next();
 						if (msg[1].equalsIgnoreCase(awarp)) {
 							warpowner = true;
 						}
 					}
 
-					if (warpowner && warpexists) {
+					if (warpowner) {
 						warps.remove(msg[1]);
 						warplist.remove(msg[1]);
 						this.config.getConfig().set(puuid + ".warps", warps);
 						this.config.getConfig().set("warplist", warplist);
-						this.config.getConfig().set(puuid + ".warpsremaining", Integer.valueOf(warpsr + 1));
+						this.config.getConfig().set(puuid + ".warpsremaining", warpsr + 1);
 						warpsr = this.config.getConfig().getInt(puuid + ".warpsremaining");
 						this.config.saveConfig();
 						this.config.reloadConfig();

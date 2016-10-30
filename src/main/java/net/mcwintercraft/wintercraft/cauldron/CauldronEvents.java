@@ -1,13 +1,6 @@
 package net.mcwintercraft.wintercraft.cauldron;
 
-import java.util.Random;
-
-import org.bukkit.Chunk;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -25,6 +18,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionType;
+
+import java.util.Random;
 
 public class CauldronEvents implements Listener{
 	
@@ -60,7 +55,7 @@ public class CauldronEvents implements Listener{
 		            if(world.getBlockAt(xx, yy, zz).getType() == Material.CAULDRON) {
 		                //Check if it exists in file
 		            	//If it does do nothing
-		            	//if It doesnt put data into file
+		            	//if It doesn't put data into file
 		            }
 		        }
 		    }
@@ -89,7 +84,7 @@ public class CauldronEvents implements Listener{
 				for (double y = 0.3; y >= 0; y = y - 0.1) {
 					for (double z = 0; z <= 1; z = z + 0.1) {
 						for (double x = 0; x <= 1; x = x + 0.1) {
-							p.playEffect(bl.add(x, y, z), Effect.SPLASH, null);
+							p.spawnParticle(Particle.WATER_SPLASH, x, y, z, 1);
 						}
 					}
 				}
@@ -99,7 +94,7 @@ public class CauldronEvents implements Listener{
 				for (double y = 0.6; y >= 0; y = y - 0.1) {
 					for (double z = 0; z <= 1; z = z + 0.1) {
 						for (double x = 0; x <= 1; x = x + 0.1) {
-							p.playEffect(bl.add(x, y, z), Effect.SPLASH, null);
+							p.spawnParticle(Particle.WATER_SPLASH, x, y, z, 1);
 						}
 					}
 				}
@@ -110,7 +105,7 @@ public class CauldronEvents implements Listener{
 				p.playSound(pl, Sound.ENTITY_GENERIC_SPLASH, 0.5F, 1);
 				break;
 			default:
-				return;
+				e.setCancelled(true);
 			}
 		}
 		
@@ -165,7 +160,7 @@ public class CauldronEvents implements Listener{
 				if (itm.getType() == Material.GLASS_BOTTLE) {
 					
 				}
-				//EMTPY BUCKET
+				//EMPTY BUCKET
 				if (itm.getType() == Material.BUCKET) {
 					
 				}
@@ -216,7 +211,7 @@ public class CauldronEvents implements Listener{
 		}
 	}
 	
-	public String rf() {
+	private String rf() {
 		String rf;
 		Random r = new Random();
 		int rn = r.nextInt(3);

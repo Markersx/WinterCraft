@@ -1,7 +1,6 @@
 package net.mcwintercraft.wintercraft.chatsounds;
 
-import java.util.ArrayList;
-
+import net.mcwintercraft.wintercraft.WinterCraftConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -13,19 +12,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 
-import net.mcwintercraft.wintercraft.WinterCraftConfig;
+import java.util.ArrayList;
 
 public class ChatSoundsInventory {
 	
-	static WinterCraftConfig config = WinterCraftConfig.getConfig("chatsounds");
+	private static final WinterCraftConfig config = WinterCraftConfig.getConfig("chatsounds");
 	
-	public static Inventory soundinv = Bukkit.createInventory(null, 45, "Sound Options");
+	public static final Inventory soundinv = Bukkit.createInventory(null, 45, "Sound Options");
 	
 	////////////////////////////////////////BLOCKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////BLOCKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////BLOCKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static Inventory blockinv = Bukkit.createInventory(null, 54, "Block Sounds");
-	static ItemStack blockinv_item = new ItemStack(Material.RECORD_8);
+	public static final Inventory blockinv = Bukkit.createInventory(null, 54, "Block Sounds");
+	private static final ItemStack blockinv_item = new ItemStack(Material.RECORD_8);
 	
 	public static Inventory blockinv_anvil = Bukkit.createInventory(null, 9, "Anvil Sounds");
 	static ItemStack blockinv_anvil_item = new ItemStack(Material.ANVIL);
@@ -120,7 +119,6 @@ public class ChatSoundsInventory {
 	static ItemStack block_lava_extinguish = new ItemStack(Material.LAVA);
 	static ItemStack block_lava_pop = new ItemStack(Material.LAVA);
 	
-	
 	public static Inventory blockinv_note = Bukkit.createInventory(null, 9, "Note Sounds");
 	static ItemStack blockinv_note_item = new ItemStack(Material.GLASS);
 	static ItemStack block_note_basedrum = new ItemStack(Material.NOTE_BLOCK);
@@ -136,7 +134,6 @@ public class ChatSoundsInventory {
 	static ItemStack block_portal_ambient = new ItemStack(Material.PORTAL);
 	static ItemStack block_portal_travel = new ItemStack(Material.PORTAL);
 	static ItemStack block_portal_trigger = new ItemStack(Material.PORTAL);
-	
 	
 	public static Inventory blockinv_sand = Bukkit.createInventory(null, 9, "San Sounds");
 	static ItemStack blockinv_sand_item = new ItemStack(Material.SAND);
@@ -210,25 +207,32 @@ public class ChatSoundsInventory {
 	////////////////////////////////////////ENTITY\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////ENTITY\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////ENTITY\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static Inventory entityinv = Bukkit.createInventory(null, 54, "Entity Sounds");
-	static ItemStack entityinv_item = new ItemStack(Material.RECORD_9);
-	
+	public static final Inventory entityinv = Bukkit.createInventory(null, 54, "Entity Sounds");
+	private static final ItemStack entityinv_item = new ItemStack(Material.RECORD_9);
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_break = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_fall = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_hit = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_place = new ItemStack(Material.ARMOR_STAND);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_arrow_hit = new ItemStack(Material.ARROW);
 	static ItemStack entity_arrow_hit_player = new ItemStack(Material.ARROW);
 	static ItemStack entity_arrow_shoot = new ItemStack(Material.ARROW);
-	
-	//BAT
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_bat_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 65);
 	static ItemStack entity_bat_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 65);
 	static ItemStack entity_bat_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 65);
 	static ItemStack entity_bat_loop = new ItemStack(Material.MONSTER_EGG, 1, (byte) 65);
 	static ItemStack entity_bat_takeoff = new ItemStack(Material.MONSTER_EGG, 1, (byte) 65);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_blaze_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 61);
 	static ItemStack entity_blaze_burn = new ItemStack(Material.MONSTER_EGG, 1, (byte) 61);
 	static ItemStack entity_blaze_death = new ItemStack(Material.BLAZE_POWDER);
@@ -237,20 +241,26 @@ public class ChatSoundsInventory {
 	
 	static ItemStack entity_bobber_splash = new ItemStack(Material.FISHING_ROD);
 	static ItemStack entity_bobber_throw = new ItemStack(Material.FISHING_ROD);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_cat_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 98);
 	static ItemStack entity_cat_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 98);
 	static ItemStack entity_cat_hiss = new ItemStack(Material.MONSTER_EGG, 1, (byte) 98);
 	static ItemStack entity_cat_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 98);
 	static ItemStack entity_cat_purr = new ItemStack(Material.MONSTER_EGG, 1, (byte) 98);
 	static ItemStack entity_cat_purreow = new ItemStack(Material.MONSTER_EGG, 1, (byte) 98);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_chicken_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 93);
 	static ItemStack entity_chicken_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 93);
 	static ItemStack entity_chicken_egg = new ItemStack(Material.EGG);
 	static ItemStack entity_chicken_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 93);
 	static ItemStack entity_chicken_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 93);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_cow_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 92);
 	static ItemStack entity_cow_death = new ItemStack(Material.LEATHER);
 	static ItemStack entity_cow_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 92);
@@ -258,18 +268,22 @@ public class ChatSoundsInventory {
 	static ItemStack entity_cow_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 92);
 	
 	//MAKE GUN POWDER
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_creeper_death = new ItemStack(Material.INK_SACK);
 	static ItemStack entity_creeper_hurt = new ItemStack(Material.SKULL_ITEM, 1, (byte) 4);
 	static ItemStack entity_creeper_primed = new ItemStack(Material.SKULL_ITEM, 1, (byte) 4);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_donkey_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_donkey_angry = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_donkey_chest = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_donkey_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_donkey_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
-	
-	static ItemStack entity_egg_throw = new ItemStack(Material.EGG);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_elder_guardian_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_elder_guardian_ambient_land = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_elder_guardian_curse = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
@@ -277,7 +291,9 @@ public class ChatSoundsInventory {
 	static ItemStack entity_elder_guardian_death_land = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_elder_guardian_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_elder_guardian_hurt_land = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_enderdragon_ambient = new ItemStack(Material.SKULL_ITEM, 1, (byte) 5);
 	static ItemStack entity_enderdragon_death = new ItemStack(Material.DRAGONS_BREATH);
 	static ItemStack entity_enderdragon_fireball_explode = new ItemStack(Material.SKULL_ITEM, 1, (byte) 5);
@@ -286,25 +302,32 @@ public class ChatSoundsInventory {
 	static ItemStack entity_enderdragon_hurt = new ItemStack(Material.SKULL_ITEM, 1, (byte) 5);
 	static ItemStack entity_enderdragon_shoot = new ItemStack(Material.SKULL_ITEM, 1, (byte) 5);
 	
-	static ItemStack entity_endereye_launch = new ItemStack(Material.EYE_OF_ENDER);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_endermen_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 58);
 	static ItemStack entity_endermen_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 58);
 	static ItemStack entity_endermen_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 58);
 	static ItemStack entity_endermen_scream = new ItemStack(Material.MONSTER_EGG, 1, (byte) 58);
 	static ItemStack entity_endermen_stare = new ItemStack(Material.MONSTER_EGG, 1, (byte) 58);
 	static ItemStack entity_endermen_teleport = new ItemStack(Material.MONSTER_EGG, 1, (byte) 58);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_endermite_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 67);
 	static ItemStack entity_endermite_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 67);
 	static ItemStack entity_endermite_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 67);
 	static ItemStack entity_endermite_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 67);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_enderpearl_throw = new ItemStack(Material.EXP_BOTTLE);
 	static ItemStack entity_experience_bottle_throw = new ItemStack(Material.EXP_BOTTLE);
 	static ItemStack entity_experience_orb_pickup = new ItemStack(Material.EXP_BOTTLE);
 	static ItemStack entity_experience_orb_touch = new ItemStack(Material.EXP_BOTTLE);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_firework_blast = new ItemStack(Material.FIREWORK);
 	static ItemStack entity_firework_blast_far = new ItemStack(Material.FIREWORK);
 	static ItemStack entity_firework_large_blast = new ItemStack(Material.FIREWORK);
@@ -313,7 +336,9 @@ public class ChatSoundsInventory {
 	static ItemStack entity_firework_shoot = new ItemStack(Material.FIREWORK);
 	static ItemStack entity_firework_twinkle = new ItemStack(Material.FIREWORK);
 	static ItemStack entity_firework_twinkle_far = new ItemStack(Material.FIREWORK);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_generic_big_fall = new ItemStack(Material.DIAMOND_BOOTS);
 	static ItemStack entity_generic_burn = new ItemStack(Material.FIRE);
 	static ItemStack entity_generic_death = new ItemStack(Material.STRUCTURE_VOID);
@@ -325,14 +350,18 @@ public class ChatSoundsInventory {
 	static ItemStack entity_generic_small_fall = new ItemStack(Material.FEATHER);
 	static ItemStack entity_generic_splash = new ItemStack(Material.WATER);
 	static ItemStack entity_generic_swim = new ItemStack(Material.BOAT);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_ghast_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 56);
 	static ItemStack entity_ghast_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 56);
 	static ItemStack entity_ghast_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 56);
 	static ItemStack entity_ghast_scream = new ItemStack(Material.MONSTER_EGG, 1, (byte) 56);
 	static ItemStack entity_ghast_shoot = new ItemStack(Material.MONSTER_EGG, 1, (byte) 56);
 	static ItemStack entity_ghast_warn = new ItemStack(Material.MONSTER_EGG, 1, (byte) 56);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_guardian_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_guardian_ambient_land = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_guardian_attack = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
@@ -341,7 +370,9 @@ public class ChatSoundsInventory {
 	static ItemStack entity_guardian_flop = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_guardian_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
 	static ItemStack entity_guardian_hurt_land = new ItemStack(Material.MONSTER_EGG, 1, (byte) 68);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_horse_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_horse_angry = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_horse_armor = new ItemStack(Material.DIAMOND_BARDING);
@@ -355,24 +386,32 @@ public class ChatSoundsInventory {
 	static ItemStack entity_horse_saddle = new ItemStack(Material.SADDLE);
 	static ItemStack entity_horse_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_horse_step_wood = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_hostile_big_fall = new ItemStack(Material.DIAMOND_BOOTS);
 	static ItemStack entity_hostile_death = new ItemStack(Material.STRUCTURE_VOID);
 	static ItemStack entity_hostile_hurt = new ItemStack(Material.CACTUS);
 	static ItemStack entity_hostile_small_fall = new ItemStack(Material.FEATHER);
 	static ItemStack entity_hostile_splash = new ItemStack(Material.WATER);
 	static ItemStack entity_hostile_swim = new ItemStack(Material.BOAT);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_husk_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_husk_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_husk_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_husk_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_irongolem_attack = new ItemStack(Material.RED_ROSE);
 	static ItemStack entity_irongolem_death = new ItemStack(Material.RED_ROSE);
 	static ItemStack entity_irongolem_hurt = new ItemStack(Material.RED_ROSE);
 	static ItemStack entity_irongolem_step = new ItemStack(Material.RED_ROSE);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_itemframe_add_item = new ItemStack(Material.ITEM_FRAME);
 	static ItemStack entity_itemframe_break = new ItemStack(Material.ITEM_FRAME);
 	static ItemStack entity_itemframe_place = new ItemStack(Material.ITEM_FRAME);
@@ -388,9 +427,9 @@ public class ChatSoundsInventory {
 	
 	static ItemStack entity_lightning_impact = new ItemStack(Material.END_ROD);
 	static ItemStack entity_lightning_thunder = new ItemStack(Material.END_ROD);
-	
-	static ItemStack entity_lingeringpotion_throw = new ItemStack(Material.LINGERING_POTION);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_magmacube_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 62);
 	static ItemStack entity_magmacube_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 62);
 	static ItemStack entity_magmacube_jump = new ItemStack(Material.MONSTER_EGG, 1, (byte) 62);
@@ -398,22 +437,26 @@ public class ChatSoundsInventory {
 	
 	static ItemStack entity_minecart_inside = new ItemStack(Material.MINECART);
 	static ItemStack entity_minecart_riding = new ItemStack(Material.MINECART);
-	
-	static ItemStack entity_mooshroom_shear = new ItemStack(Material.MONSTER_EGG, 1, (byte) 96);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_mule_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_mule_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	static ItemStack entity_mule_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
 	
 	static ItemStack entity_painting_break = new ItemStack(Material.PAINTING);
 	static ItemStack entity_painting_place = new ItemStack(Material.PAINTING);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_pig_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 90);
 	static ItemStack entity_pig_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 90);
 	static ItemStack entity_pig_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 90);
 	static ItemStack entity_pig_saddle = new ItemStack(Material.SADDLE);
 	static ItemStack entity_pig_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 90);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_player_attack_crit = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 	static ItemStack entity_player_attack_knockback = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 	static ItemStack entity_player_attack_nodamage = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
@@ -429,26 +472,34 @@ public class ChatSoundsInventory {
 	static ItemStack entity_player_small_fall = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 	static ItemStack entity_player_splash = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
 	static ItemStack entity_player_swim = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_polar_bear_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 102);
 	static ItemStack entity_polar_bear_baby_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 102);
 	static ItemStack entity_polar_bear_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 102);
 	static ItemStack entity_polar_bear_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 102);
 	static ItemStack entity_polar_bear_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 102);
 	static ItemStack entity_polar_bear_warning = new ItemStack(Material.MONSTER_EGG, 1, (byte) 102);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_rabbit_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 101);
 	static ItemStack entity_rabbit_attack = new ItemStack(Material.MONSTER_EGG, 1, (byte) 101);
 	static ItemStack entity_rabbit_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 101);
 	static ItemStack entity_rabbit_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 101);
 	static ItemStack entity_rabbit_jump = new ItemStack(Material.RABBIT_FOOT);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_sheep_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 91);
 	static ItemStack entity_sheep_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 91);
 	static ItemStack entity_sheep_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 91);
 	static ItemStack entity_sheep_shear = new ItemStack(Material.SHEARS);
 	static ItemStack entity_sheep_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 91);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_shulker_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 69);
 	static ItemStack entity_shulker_bullet_hit = new ItemStack(Material.MONSTER_EGG, 1, (byte) 69);
 	static ItemStack entity_shulker_bullet_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 69);
@@ -459,12 +510,16 @@ public class ChatSoundsInventory {
 	static ItemStack entity_shulker_open = new ItemStack(Material.MONSTER_EGG, 1, (byte) 69);
 	static ItemStack entity_shulker_shoot = new ItemStack(Material.BOW);
 	static ItemStack entity_shulker_teleport = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_silverfish_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 60);
 	static ItemStack entity_silverfish_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 60);
 	static ItemStack entity_silverfish_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 60);
 	static ItemStack entity_silverfish_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 60);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_skeleton_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_skeleton_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_skeleton_horse_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 100);
@@ -473,13 +528,17 @@ public class ChatSoundsInventory {
 	static ItemStack entity_skeleton_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_skeleton_shoot = new ItemStack(Material.BOW);
 	static ItemStack entity_skeleton_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_slime_attack = new ItemStack(Material.MONSTER_EGG, 1, (byte) 55);
 	static ItemStack entity_slime_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 55);
 	static ItemStack entity_slime_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 55);
 	static ItemStack entity_slime_jump = new ItemStack(Material.MONSTER_EGG, 1, (byte) 55);
 	static ItemStack entity_slime_squish = new ItemStack(Material.MONSTER_EGG, 1, (byte) 55);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_small_magmacube_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 62);
 	static ItemStack entity_small_magmacube_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 62);
 	static ItemStack entity_small_magmacube_squish = new ItemStack(Material.MONSTER_EGG, 1, (byte) 62);
@@ -489,31 +548,38 @@ public class ChatSoundsInventory {
 	static ItemStack entity_small_slime_squish = new ItemStack(Material.SLIME_BALL);
 	
 	static ItemStack entity_snowball_throw = new ItemStack(Material.SNOW_BALL);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_snowman_ambient = new ItemStack(Material.PUMPKIN);
 	static ItemStack entity_snowman_death = new ItemStack(Material.PUMPKIN);
 	static ItemStack entity_snowman_hurt = new ItemStack(Material.PUMPKIN);
 	static ItemStack entity_snowman_shoot = new ItemStack(Material.SNOW_BALL);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_spider_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 52);
 	static ItemStack entity_spider_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 52);
 	static ItemStack entity_spider_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 52);
 	static ItemStack entity_spider_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 52);
-	
-	static ItemStack entity_splash_potion_break = new ItemStack(Material.SPLASH_POTION);
-	static ItemStack entity_splash_potion_throw = new ItemStack(Material.SPLASH_POTION);
-	
+
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_squid_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 94);
 	static ItemStack entity_squid_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 94);
 	static ItemStack entity_squid_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 94);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_stray_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_stray_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_stray_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	static ItemStack entity_stray_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 51);
 	
-	static ItemStack entity_tnt_primed = new ItemStack(Material.TNT);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_villager_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 120);
 	static ItemStack entity_villager_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 120);
 	static ItemStack entity_villager_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 120);
@@ -522,12 +588,16 @@ public class ChatSoundsInventory {
 	static ItemStack entity_villager_yes = new ItemStack(Material.MONSTER_EGG, 1, (byte) 120);
 	
 	//CHANGE POTION TYPE
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_witch_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 66);
 	static ItemStack entity_witch_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 66);
 	static ItemStack entity_witch_drink = new ItemStack(Material.POTION);
 	static ItemStack entity_witch_hurt = new ItemStack(Material.MONSTER_EGG, 1, (byte) 66);
 	static ItemStack entity_witch_throw = new ItemStack(Material.SPLASH_POTION);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_wither_ambient = new ItemStack(Material.SKULL_ITEM, 1, (byte) 1);
 	static ItemStack entity_wither_break_block = new ItemStack(Material.SKULL_ITEM, 1, (byte) 1);
 	static ItemStack entity_wither_death = new ItemStack(Material.SKULL_ITEM, 1, (byte) 1);
@@ -538,7 +608,9 @@ public class ChatSoundsInventory {
 	static ItemStack entity_wither_skeleton_hurt = new ItemStack(Material.SKULL_ITEM, 1, (byte) 1);
 	static ItemStack entity_wither_skeleton_step = new ItemStack(Material.SKULL_ITEM, 1, (byte) 1);
 	static ItemStack entity_wither_spawn = new ItemStack(Material.SKULL_ITEM, 1, (byte) 1);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_wolf_ambient = new ItemStack(Material.MONSTER_EGG, 1, (byte) 95);
 	static ItemStack entity_wolf_death = new ItemStack(Material.MONSTER_EGG, 1, (byte) 95);
 	static ItemStack entity_wolf_growl = new ItemStack(Material.MONSTER_EGG, 1, (byte) 95);
@@ -548,7 +620,9 @@ public class ChatSoundsInventory {
 	static ItemStack entity_wolf_shake = new ItemStack(Material.MONSTER_EGG, 1, (byte) 95);
 	static ItemStack entity_wolf_step = new ItemStack(Material.MONSTER_EGG, 1, (byte) 95);
 	static ItemStack entity_wolf_whine = new ItemStack(Material.MONSTER_EGG, 1, (byte) 95);
-	
+
+    public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "ArmorStand Sounds");
+    static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_zombie_ambient = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
 	static ItemStack entity_zombie_attack_door_wood = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
 	static ItemStack entity_zombie_attack_iron_door = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
@@ -570,12 +644,20 @@ public class ChatSoundsInventory {
 	static ItemStack entity_zombie_villager_death = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
 	static ItemStack entity_zombie_villager_hurt = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
 	static ItemStack entity_zombie_villager_step = new ItemStack(Material.SKULL_ITEM, 1, (byte) 2);
-	
+
+    static ItemStack entity_tnt_primed = new ItemStack(Material.TNT);
+    static ItemStack entity_splash_potion_break = new ItemStack(Material.SPLASH_POTION);
+    static ItemStack entity_splash_potion_throw = new ItemStack(Material.SPLASH_POTION);
+    static ItemStack entity_endereye_launch = new ItemStack(Material.EYE_OF_ENDER);
+    static ItemStack entity_lingeringpotion_throw = new ItemStack(Material.LINGERING_POTION);
+    static ItemStack entity_egg_throw = new ItemStack(Material.EGG);
+    static ItemStack entity_mooshroom_shear = new ItemStack(Material.MONSTER_EGG, 1, (byte) 96);
+
 	////////////////////////////////////////ITEM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////ITEM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////ITEM\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static Inventory iteminv = Bukkit.createInventory(null, 54, "Item Sounds");
-	static ItemStack iteminv_item = new ItemStack(Material.RECORD_4);
+	public static final Inventory iteminv = Bukkit.createInventory(null, 54, "Item Sounds");
+	private static final ItemStack iteminv_item = new ItemStack(Material.RECORD_4);
 	
 	static ItemStack item_armor_equip_chain = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
 	static ItemStack item_armor_equip_diamond = new ItemStack(Material.DIAMOND_CHESTPLATE);
@@ -611,8 +693,8 @@ public class ChatSoundsInventory {
 	////////////////////////////////////////SONG\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////SONG\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////SONG\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static Inventory songinv = Bukkit.createInventory(null, 54, "Music Sounds");
-	static ItemStack songinv_item = new ItemStack(Material.GOLD_RECORD);
+	public static final Inventory songinv = Bukkit.createInventory(null, 54, "Music Sounds");
+	private static final ItemStack songinv_item = new ItemStack(Material.GOLD_RECORD);
 	static ItemStack music_creative = new ItemStack(Material.JUKEBOX);
 	static ItemStack music_credits = new ItemStack(Material.JUKEBOX);
 	static ItemStack music_dragon = new ItemStack(Material.JUKEBOX);
@@ -638,8 +720,8 @@ public class ChatSoundsInventory {
 	////////////////////////////////////////MISC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////MISC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	////////////////////////////////////////MISC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static Inventory miscinv = Bukkit.createInventory(null, 9, "Misc Sounds");
-	static ItemStack miscinv_item = new ItemStack(Material.RECORD_12);
+	public static final Inventory miscinv = Bukkit.createInventory(null, 9, "Misc Sounds");
+	private static final ItemStack miscinv_item = new ItemStack(Material.RECORD_12);
 	//WEATHER
 	static ItemStack weather_rain = new ItemStack(Material.WATER_BUCKET);
 	static ItemStack weather_rain_above = new ItemStack(Material.WATER_BUCKET);
@@ -651,10 +733,10 @@ public class ChatSoundsInventory {
 	static ItemStack ambient_cave = new ItemStack(Material.STONE);
 	/////////////////////////////////////////////////////////////////////////
 	
-	public static Inventory catselect = Bukkit.createInventory(null, 9, "Select Category");	
+	public static final Inventory catselect = Bukkit.createInventory(null, 9, "Select Category");
 	
-	static ItemStack backbutton_item = new ItemStack(Material.STONE_BUTTON);
-	static ItemStack reset_item = new ItemStack(Material.TNT);
+	static final ItemStack backbutton_item = new ItemStack(Material.STONE_BUTTON);
+	private static final ItemStack reset_item = new ItemStack(Material.TNT);
 	
 	public static void LoadInv(Player p, String puuid) {
 		
@@ -690,21 +772,21 @@ public class ChatSoundsInventory {
 		songinv.setItem(53, backbutton_item);
 		miscinv.setItem(8, backbutton_item);
 		
-		ArrayList<String> ctt = new ArrayList<String>();
+		ArrayList<String> ctt = new ArrayList<>();
 		ctt.add(ChatColor.WHITE + "Click to toggle");
 		
-		ArrayList<String> cts = new ArrayList<String>();
+		ArrayList<String> cts = new ArrayList<>();
 		cts.add(ChatColor.WHITE + "Click to select");
 		
-		ArrayList<String> lcrc = new ArrayList<String>();
+		ArrayList<String> lcrc = new ArrayList<>();
 		lcrc.add(ChatColor.WHITE + "Left click +1");
 		lcrc.add(ChatColor.WHITE + "Right click -1");
 		
-		ArrayList<String> ctvas = new ArrayList<String>();
+		ArrayList<String> ctvas = new ArrayList<>();
 		ctvas.add(ChatColor.WHITE + "click to view");
 		ctvas.add(ChatColor.WHITE + "all sounds");
 		
-		ArrayList<String> ls = new ArrayList<String>();
+		ArrayList<String> ls = new ArrayList<>();
 		ls.add(ChatColor.WHITE + "Left click to select");
 		ls.add(ChatColor.WHITE + "Right click to listen");
 		
@@ -837,7 +919,7 @@ public class ChatSoundsInventory {
 		p.openInventory(soundinv);
 	}
 	
-	static void enabled(boolean b, ItemStack i) {
+	private static void enabled(boolean b, ItemStack i) {
 		if (b) {
 			Wool g = new Wool(DyeColor.LIME);
 			ItemStack gis = g.toItemStack();

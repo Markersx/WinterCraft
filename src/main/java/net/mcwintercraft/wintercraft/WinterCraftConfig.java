@@ -4,25 +4,21 @@
 
 package net.mcwintercraft.wintercraft;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class WinterCraftConfig {
 
-	private String n;
+	private final String n;
 	private FileConfiguration fc;
 	private File file;
 	private final Plugin plugin = WinterCraft.getPlugin();
-	private static List<WinterCraftConfig> configs = new ArrayList<>();
+	private static final List<WinterCraftConfig> configs = new ArrayList<>();
 
 	private WinterCraftConfig(String n) {
 		this.n = n;
@@ -35,7 +31,7 @@ public class WinterCraftConfig {
 	 * 
 	 * @return The player as type bukkit.entity.Player
 	 */
-	public String getName() {
+	private String getName() {
 		if (n == null)
 			try {
 				throw new Exception();
@@ -44,23 +40,6 @@ public class WinterCraftConfig {
 			}
 		return n;
 	}
-	
-	/**
-	 * Returns an instanceof the JavaPlugin.
-	 * @return
-	 */
-	
-	//wasn't working so I made some changes.
-	//going to leave it just in case
-	//public Plugin getPlugin() {
-	//	if (plugin == null)
-	//		try {
-	//			throw new Exception();
-	//		} catch (Exception e) {
-	//			e.printStackTrace();
-	//		}
-	//	return plugin;
-	//}
 	
 	/**
 	 * Get a config from type 'Config'. If it doesn't exist it will create a new Config. NOTE: String n must be exactly the Config's name.
@@ -84,7 +63,7 @@ public class WinterCraftConfig {
 	 * @return True if the config was successfully deleted. If anything went
 	 *         wrong it returns false
 	 */
-	public boolean delete() {
+	private boolean delete() {
 		return getFile().delete();
 	}
 
@@ -110,7 +89,7 @@ public class WinterCraftConfig {
 	 * 
 	 * @return The folder as type java.io.File
 	 */
-	public File getDataFolder() {
+	private File getDataFolder() {
 		File dir = new File(WinterCraftConfig.class.getProtectionDomain().getCodeSource().getLocation().getPath().replaceAll("%20", " "));
 		File d = new File(dir.getParentFile().getPath(), WinterCraft.getPlugin().getName());
 		if (!d.exists()) {
@@ -124,7 +103,7 @@ public class WinterCraftConfig {
 	 * 
 	 * @return The File as type java.io.File
 	 */
-	public File getFile() {
+	private File getFile() {
 		if (file == null) {
 			file = new File(getDataFolder(), getName() + ".yml");
 			if (!file.exists()) {

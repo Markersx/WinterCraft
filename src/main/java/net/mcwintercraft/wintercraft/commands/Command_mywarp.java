@@ -1,7 +1,5 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import java.util.List;
-
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
@@ -9,9 +7,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class Command_mywarp implements CommandExecutor {
 	
-	WinterCraftConfig config = WinterCraftConfig.getConfig("playerwarps");
+	private final WinterCraftConfig config = WinterCraftConfig.getConfig("playerwarps");
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("mywarp") && sender instanceof Player) {

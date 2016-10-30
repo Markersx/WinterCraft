@@ -1,13 +1,12 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import java.util.Random;
-
+import net.mcwintercraft.wintercraft.WinterCraftUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
 import org.bukkit.FireworkEffect.Builder;
 import org.bukkit.FireworkEffect.Type;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,14 +15,14 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 
-import net.mcwintercraft.wintercraft.WinterCraftUtil;
+import java.util.Random;
 
 public class Command_srfw implements CommandExecutor {
 	
-	static Random random = new Random();
-	int srfws = 0;
-	int srfws2 = 0;
-	int radius = 0;
+	private static final Random random = new Random();
+	private int srfws = 0;
+	private int srfws2 = 0;
+	private int radius = 0;
 		
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 				
@@ -92,8 +91,8 @@ public class Command_srfw implements CommandExecutor {
 	}
 	    
 	//shoots random firework for every player
-	public void srfws() {
-		while (srfws > 0 && srfws != 0) {
+    private void srfws() {
+		while (srfws > 0) {
 			for(Player p : Bukkit.getOnlinePlayers()){
 				Location locat = p.getLocation();
 				if (radius != 0) {
@@ -107,21 +106,20 @@ public class Command_srfw implements CommandExecutor {
 	}
 	
 	//shoots random firework for 1 player
-	public void srfws2(Player target) {
-		while (srfws2 > 0 && srfws2 != 0) {
-			Player p = target;
-			Location locat = p.getLocation();
+    private void srfws2(Player target) {
+		while (srfws2 > 0) {
+            Location loc = target.getLocation();
 			if (radius > 0) {
-				locat.add(random.nextInt(radius), 0, random.nextInt(radius));
-				locat.subtract(random.nextInt(radius), 0, random.nextInt(radius));
+				loc.add(random.nextInt(radius), 0, random.nextInt(radius));
+                loc.subtract(random.nextInt(radius), 0, random.nextInt(radius));
 			}
-			shootRandomFirework(locat, 1);
+			shootRandomFirework(loc, 1);
 			srfws2--;
 		}
 	}
 
 	//Create random firework
-	public static void shootRandomFirework(Location loc, int height) {
+	private static void shootRandomFirework(Location loc, int height) {
 		Firework f = (Firework) loc.getWorld().spawnEntity(loc, EntityType.FIREWORK);
 		FireworkMeta fm = f.getFireworkMeta();
 		fm.setPower(height);
@@ -133,8 +131,8 @@ public class Command_srfw implements CommandExecutor {
 				b.withColor(Color.fromBGR(random.nextInt(256), random.nextInt(256), random.nextInt(256)));
 			}
 			b.with(Type.values()[random.nextInt(Type.values().length)]);
-			b.flicker(random.nextInt(2) == 0 ? false : true);
-			b.trail(random.nextInt(2) == 0 ? false : true);
+			b.flicker(random.nextInt(2) != 0);
+			b.trail(random.nextInt(2) != 0);
 			fm.addEffect(b.build());
 		}
 		f.setFireworkMeta(fm);

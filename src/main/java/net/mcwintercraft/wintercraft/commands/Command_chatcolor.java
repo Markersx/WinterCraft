@@ -2,7 +2,6 @@ package net.mcwintercraft.wintercraft.commands;
 
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsInventory;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class PreventCosmetics implements Listener {
+class PreventCosmetics implements Listener {
 	
 	//Prevent selling cosmetic items signs
 	

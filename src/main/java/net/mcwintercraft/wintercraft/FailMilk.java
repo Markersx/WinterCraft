@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class FailMilk implements Listener {
+class FailMilk implements Listener {
 	
 	@EventHandler
 	public void onMilk(PlayerInteractEntityEvent e) {

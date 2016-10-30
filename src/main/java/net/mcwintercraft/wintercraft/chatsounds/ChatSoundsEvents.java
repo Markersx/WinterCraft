@@ -1,10 +1,7 @@
 package net.mcwintercraft.wintercraft.chatsounds;
 
-import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import net.mcwintercraft.wintercraft.WinterCraftConfig;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,11 +14,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Wool;
 
-import net.mcwintercraft.wintercraft.WinterCraftConfig;
-
 public class ChatSoundsEvents implements Listener {
 
-	WinterCraftConfig config = WinterCraftConfig.getConfig("chatsounds");
+	private final WinterCraftConfig config = WinterCraftConfig.getConfig("chatsounds");
 
 	//PLAYERJOIN
 	@EventHandler
@@ -33,7 +28,7 @@ public class ChatSoundsEvents implements Listener {
 		   if (config.getConfig().getString(puuid) == null) {
 			   loadchatsoundsconfig(op, puuid);
 		   } else {
-			   if (op.getName() == config.getConfig().getString(puuid + ".name")) {
+			   if (op.getName().equals(config.getConfig().getString(puuid + ".name"))) {
 				   config.getConfig().set(puuid + ".name", op.getName());
 			   }
 		   }
@@ -118,7 +113,7 @@ public class ChatSoundsEvents implements Listener {
 		if (c != null && c.getType() != Material.AIR && inv.getName().equals(ChatSoundsInventory.soundinv.getName())) {
 			
 			e.setCancelled(true);
-			String n = e.getCurrentItem().getItemMeta().getDisplayName().toString().substring(2);
+			String n = e.getCurrentItem().getItemMeta().getDisplayName().substring(2);
 			
 			//SOUNDS
 			if(c.getType() == Material.NOTE_BLOCK) {

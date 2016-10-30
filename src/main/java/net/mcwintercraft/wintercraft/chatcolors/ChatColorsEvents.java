@@ -1,10 +1,7 @@
 package net.mcwintercraft.wintercraft.chatcolors;
 
-import java.util.Random;
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
-import net.mcwintercraft.wintercraft.chatcolors.ChatColorsInventory;
 import net.md_5.bungee.api.ChatColor;
-
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -18,9 +15,11 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Wool;
 
+import java.util.Random;
+
 public class ChatColorsEvents implements Listener {
-	
-	static WinterCraftConfig config = WinterCraftConfig.getConfig("chatcolors");
+
+	private static final WinterCraftConfig config = WinterCraftConfig.getConfig("chatcolors");
 	
 	@EventHandler
 	public void onPlayerLogin(PlayerLoginEvent e) {
@@ -29,7 +28,7 @@ public class ChatColorsEvents implements Listener {
 		if (config.getConfig().getString(puuid) == null) {
 			loadchatcolorsconfig(puuid, p);
 		}  else {
-			   if (p.getName() == config.getConfig().getString(puuid + ".name")) {
+			   if (p.getName().equals(config.getConfig().getString(puuid + ".name"))) {
 				   config.getConfig().set(puuid + ".name", p.getName());
 			   }
 		   }
@@ -40,7 +39,7 @@ public class ChatColorsEvents implements Listener {
 		
 		Player p = e.getPlayer();
 		String puuid = p.getUniqueId().toString();
-		String msg = e.getMessage().toString();
+		String msg = e.getMessage();
 		String codes = "";
 		String color = config.getConfig().getString(puuid + ".color");
 		
@@ -48,8 +47,8 @@ public class ChatColorsEvents implements Listener {
 			loadchatcolorsconfig(puuid, p);
 		}
 		
-		if (p.getName().toString() != config.getConfig().getString(puuid + ".name")) {
-			config.getConfig().set(puuid + ".name", p.getName().toString());
+		if (!p.getName().equals(config.getConfig().getString(puuid + ".name"))) {
+			config.getConfig().set(puuid + ".name", p.getName());
 		}
 
 		if (config.getConfig().getBoolean(puuid + ".bold")) {
@@ -110,7 +109,7 @@ public class ChatColorsEvents implements Listener {
 				String cl = clicked.getItemMeta().getDisplayName();
 				
 				if (cl.equals(gc(cl))) {
-					config.getConfig().set(puuid + ".color", cl.toString().replace(" ", "_").substring(2));
+					config.getConfig().set(puuid + ".color", cl.replace(" ", "_").substring(2));
 					config.saveConfig();
 					config.reloadConfig();
 					ench(inventory, clicked);
@@ -118,8 +117,8 @@ public class ChatColorsEvents implements Listener {
 
 				if (cl.equals(gs(cl))) {
 					
-					Boolean bol = Boolean.valueOf(config.getConfig().getBoolean(puuid + "." + cl.toString().toLowerCase().substring(4)));
-					config.getConfig().set(puuid + "." + cl.toString().toLowerCase().substring(4), Boolean.valueOf(!bol));
+					Boolean bol = config.getConfig().getBoolean(puuid + "." + cl.toLowerCase().substring(4));
+					config.getConfig().set(puuid + "." + cl.toLowerCase().substring(4), !bol);
 					
 					if (!bol) {
 						Wool g = new Wool(DyeColor.LIME);
@@ -142,7 +141,7 @@ public class ChatColorsEvents implements Listener {
 
 	private String gs(String cl) {
 		String ss = null;
-		switch (cl.toString().substring(4)) {
+		switch (cl.substring(4)) {
 		case "BOLD":
 			ss = ChatColorsInventory.bold_name;
 			break;
@@ -170,7 +169,7 @@ public class ChatColorsEvents implements Listener {
 
 	private String gc(String cl) {
 		String cs;
-		switch (cl.toString().substring(2)) {
+		switch (cl.substring(2)) {
 		case "AQUA":
 			cs = ChatColorsInventory.aqua_name;
 			break;
@@ -231,11 +230,11 @@ public class ChatColorsEvents implements Listener {
 		ItemStack[] item = inventory.getContents();
 		
 		if (!clicked.containsEnchantment(Enchantment.SILK_TOUCH)) {
-			for (int i = 0; i < item.length; i++) {
-			    if(item[i] !=null && item[i].containsEnchantment(Enchantment.SILK_TOUCH)) {
-			        item[i].removeEnchantment(Enchantment.SILK_TOUCH);
-			    }
-			}
+            for (ItemStack anItem : item) {
+                if (anItem != null && anItem.containsEnchantment(Enchantment.SILK_TOUCH)) {
+                    anItem.removeEnchantment(Enchantment.SILK_TOUCH);
+                }
+            }
 			clicked.addUnsafeEnchantment(Enchantment.SILK_TOUCH, 1);
 		}		
 	}
@@ -306,16 +305,16 @@ public class ChatColorsEvents implements Listener {
 		return cs;
 	}
 	
-	public void loadchatcolorsconfig(String puuid, Player p) {
-		config.getConfig().set(puuid + ".name", p.getName().toString());
+	private void loadchatcolorsconfig(String puuid, Player p) {
+		config.getConfig().set(puuid + ".name", p.getName());
 		config.getConfig().set(puuid + ".color", "WHITE");
-		config.getConfig().set(puuid + ".bold", Boolean.valueOf(false));
-		config.getConfig().set(puuid + ".underline", Boolean.valueOf(false));
-		config.getConfig().set(puuid + ".strikethrough", Boolean.valueOf(false));
-		config.getConfig().set(puuid + ".magic", Boolean.valueOf(false));
-		config.getConfig().set(puuid + ".italic", Boolean.valueOf(false));
-		config.getConfig().set(puuid + ".random", Boolean.valueOf(false));
-		config.getConfig().set(puuid + ".rainbow", Boolean.valueOf(false));
+		config.getConfig().set(puuid + ".bold", Boolean.FALSE);
+		config.getConfig().set(puuid + ".underline", Boolean.FALSE);
+		config.getConfig().set(puuid + ".strikethrough", Boolean.FALSE);
+		config.getConfig().set(puuid + ".magic", Boolean.FALSE);
+		config.getConfig().set(puuid + ".italic", Boolean.FALSE);
+		config.getConfig().set(puuid + ".random", Boolean.FALSE);
+		config.getConfig().set(puuid + ".rainbow", Boolean.FALSE);
 		config.saveConfig();
 		config.reloadConfig();
 	}

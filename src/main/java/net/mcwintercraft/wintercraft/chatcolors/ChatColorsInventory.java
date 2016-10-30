@@ -1,5 +1,6 @@
 package net.mcwintercraft.wintercraft.chatcolors;
 
+import net.mcwintercraft.wintercraft.WinterCraft;
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -16,111 +17,109 @@ import org.bukkit.material.Wool;
 
 public class ChatColorsInventory {
 	
-	public static WinterCraftConfig config = WinterCraftConfig.getConfig("chatcolors");
-	
-	public static Inventory colorinv = Bukkit.createInventory((InventoryHolder) null, 54, "Color Options");
+	private static final WinterCraftConfig config = WinterCraftConfig.getConfig("chatcolors");
+	public static final Inventory colorinv = Bukkit.createInventory((InventoryHolder) null, 54, "Color Options");
 	
 	//CHAT COLORS
-	static ItemStack black = new ItemStack(Material.WOOL, 1, (short) 15);
-	static String black_name = ChatColor.BLACK + "BLACK";
-	static ItemMeta black_meta = black.getItemMeta();
+	private static final ItemStack black = new ItemStack(Material.WOOL, 1, (short) 15);
+	static final String black_name = ChatColor.BLACK + "BLACK";
+	private static final ItemMeta black_meta = black.getItemMeta();
 	
-	static ItemStack dark_blue = new ItemStack(Material.WOOL, 1, (short) 11);
-	static String dark_blue_name = ChatColor.DARK_BLUE + "DARK BLUE";
-	static ItemMeta dark_blue_meta = dark_blue.getItemMeta();
+	private static final ItemStack dark_blue = new ItemStack(Material.WOOL, 1, (short) 11);
+	static final String dark_blue_name = ChatColor.DARK_BLUE + "DARK BLUE";
+	private static final ItemMeta dark_blue_meta = dark_blue.getItemMeta();
 	
-	static ItemStack dark_green = new ItemStack(Material.WOOL, 1, (short) 13);
-	static String dark_green_name = ChatColor.DARK_GREEN + "DARK GREEN";
-	static ItemMeta dark_green_meta = dark_green.getItemMeta();
+	private static final ItemStack dark_green = new ItemStack(Material.WOOL, 1, (short) 13);
+	static final String dark_green_name = ChatColor.DARK_GREEN + "DARK GREEN";
+	private static final ItemMeta dark_green_meta = dark_green.getItemMeta();
 	
-	static ItemStack dark_aqua = new ItemStack(Material.WOOL, 1, (short) 9);
-	static String dark_aqua_name = ChatColor.DARK_AQUA + "DARK AQUA";
-	static ItemMeta dark_aqua_meta = dark_aqua.getItemMeta();
+	private static final ItemStack dark_aqua = new ItemStack(Material.WOOL, 1, (short) 9);
+	static final String dark_aqua_name = ChatColor.DARK_AQUA + "DARK AQUA";
+	private static final ItemMeta dark_aqua_meta = dark_aqua.getItemMeta();
 	
-	static ItemStack dark_red = new ItemStack(Material.WOOL, 1, (short) 14);
-	static String dark_red_name = ChatColor.DARK_RED + "DARK RED";
-	static ItemMeta dark_red_meta = dark_red.getItemMeta();
+	private static final ItemStack dark_red = new ItemStack(Material.WOOL, 1, (short) 14);
+	static final String dark_red_name = ChatColor.DARK_RED + "DARK RED";
+	private static final ItemMeta dark_red_meta = dark_red.getItemMeta();
 	
-	static ItemStack dark_purple = new ItemStack(Material.WOOL, 1, (short) 10);
-	static String dark_purple_name = ChatColor.DARK_PURPLE + "DARK PURPLE";
-	static ItemMeta dark_purple_meta = dark_purple.getItemMeta();
+	private static final ItemStack dark_purple = new ItemStack(Material.WOOL, 1, (short) 10);
+	static final String dark_purple_name = ChatColor.DARK_PURPLE + "DARK PURPLE";
+	private static final ItemMeta dark_purple_meta = dark_purple.getItemMeta();
 	
-	static ItemStack gold = new ItemStack(Material.WOOL, 1, (short) 1);
-	static String gold_name = ChatColor.GOLD + "GOLD";
-	static ItemMeta gold_meta = gold.getItemMeta();
+	private static final ItemStack gold = new ItemStack(Material.WOOL, 1, (short) 1);
+	static final String gold_name = ChatColor.GOLD + "GOLD";
+	private static final ItemMeta gold_meta = gold.getItemMeta();
 	
-	static ItemStack gray = new ItemStack(Material.WOOL, 1, (short) 8);
-	static String gray_name = ChatColor.GRAY + "GRAY";
-	static ItemMeta gray_meta = gray.getItemMeta();
+	private static final ItemStack gray = new ItemStack(Material.WOOL, 1, (short) 8);
+	static final String gray_name = ChatColor.GRAY + "GRAY";
+	private static final ItemMeta gray_meta = gray.getItemMeta();
 	
-	static ItemStack dark_gray = new ItemStack(Material.WOOL, 1, (short) 7);
-	static String dark_gray_name = ChatColor.DARK_GRAY + "DARK GRAY";
-	static ItemMeta dark_gray_meta = dark_gray.getItemMeta();
+	private static final ItemStack dark_gray = new ItemStack(Material.WOOL, 1, (short) 7);
+	static final String dark_gray_name = ChatColor.DARK_GRAY + "DARK GRAY";
+	private static final ItemMeta dark_gray_meta = dark_gray.getItemMeta();
 	
-	static ItemStack blue = new ItemStack(Material.WOOL, 1, (short) 11);
-	static String blue_name = ChatColor.BLUE + "BLUE";
-	static ItemMeta blue_meta = blue.getItemMeta();
+	private static final ItemStack blue = new ItemStack(Material.WOOL, 1, (short) 11);
+	static final String blue_name = ChatColor.BLUE + "BLUE";
+	private static final ItemMeta blue_meta = blue.getItemMeta();
 	
-	static ItemStack green = new ItemStack(Material.WOOL, 1, (short) 5);
-	static String green_name = ChatColor.GREEN + "GREEN";
-	static ItemMeta green_meta = green.getItemMeta();
+	private static final ItemStack green = new ItemStack(Material.WOOL, 1, (short) 5);
+	static final String green_name = ChatColor.GREEN + "GREEN";
+	private static final ItemMeta green_meta = green.getItemMeta();
 	
-	static ItemStack red = new ItemStack(Material.WOOL, 1, (short) 6);
-	static String red_name = ChatColor.RED + "RED";
-	static ItemMeta red_meta = red.getItemMeta();
+	private static final ItemStack red = new ItemStack(Material.WOOL, 1, (short) 6);
+	static final String red_name = ChatColor.RED + "RED";
+	private static final ItemMeta red_meta = red.getItemMeta();
 	
-	static ItemStack aqua = new ItemStack(Material.WOOL, 1, (short) 3);
-	static String aqua_name = ChatColor.AQUA + "AQUA";
-	static ItemMeta aqua_meta = aqua.getItemMeta();
+	private static final ItemStack aqua = new ItemStack(Material.WOOL, 1, (short) 3);
+	static final String aqua_name = ChatColor.AQUA + "AQUA";
+	private static final ItemMeta aqua_meta = aqua.getItemMeta();
 	
-	static ItemStack light_purple = new ItemStack(Material.WOOL, 1, (short) 2);
-	static String light_purple_name = ChatColor.LIGHT_PURPLE + "LIGHT PURPLE";
-	static ItemMeta light_purple_meta = light_purple.getItemMeta();
+	private static final ItemStack light_purple = new ItemStack(Material.WOOL, 1, (short) 2);
+	static final String light_purple_name = ChatColor.LIGHT_PURPLE + "LIGHT PURPLE";
+	private static final ItemMeta light_purple_meta = light_purple.getItemMeta();
 	
-	static ItemStack yellow = new ItemStack(Material.WOOL, 1, (short) 4);
-	static String yellow_name = ChatColor.YELLOW + "YELLOW";
-	static ItemMeta yellow_meta = yellow.getItemMeta();
+	private static final ItemStack yellow = new ItemStack(Material.WOOL, 1, (short) 4);
+	static final String yellow_name = ChatColor.YELLOW + "YELLOW";
+	private static final ItemMeta yellow_meta = yellow.getItemMeta();
 	
-	static ItemStack white = new ItemStack(Material.WOOL, 1);
-	static String white_name = ChatColor.WHITE + "WHITE";
-	static ItemMeta white_meta = white.getItemMeta();
+	private static final ItemStack white = new ItemStack(Material.WOOL, 1);
+	static final String white_name = ChatColor.WHITE + "WHITE";
+	private static final ItemMeta white_meta = white.getItemMeta();
 	
 	//CHAT STYLES
-	static ItemStack bold = new ItemStack(Material.WOOL, 1);
-	static String bold_name = "" + ChatColor.RESET + ChatColor.BOLD + "BOLD";
-	static ItemMeta bold_meta = bold.getItemMeta();
+	private static final ItemStack bold = new ItemStack(Material.WOOL, 1);
+	static final String bold_name = "" + ChatColor.RESET + ChatColor.BOLD + "BOLD";
+	private static final ItemMeta bold_meta = bold.getItemMeta();
 	
-	static ItemStack magic = new ItemStack(Material.WOOL, 1);
-	static String magic_name = "" + ChatColor.RESET + ChatColor.MAGIC + "MAGIC";
-	static ItemMeta magic_meta = magic.getItemMeta();
+	private static final ItemStack magic = new ItemStack(Material.WOOL, 1);
+	static final String magic_name = "" + ChatColor.RESET + ChatColor.MAGIC + "MAGIC";
+	private static final ItemMeta magic_meta = magic.getItemMeta();
 	
-	static ItemStack underline = new ItemStack(Material.WOOL, 1);
-	static String underline_name = "" + ChatColor.RESET + ChatColor.UNDERLINE + "UNDERLINE";
-	static ItemMeta underline_meta = underline.getItemMeta();
+	private static final ItemStack underline = new ItemStack(Material.WOOL, 1);
+	static final String underline_name = "" + ChatColor.RESET + ChatColor.UNDERLINE + "UNDERLINE";
+	private static final ItemMeta underline_meta = underline.getItemMeta();
 	
-	static ItemStack italic = new ItemStack(Material.WOOL, 1);
-	static String italic_name = "" + ChatColor.RESET + ChatColor.ITALIC + "ITALIC";
-	static ItemMeta italic_meta = italic.getItemMeta();
+	private static final ItemStack italic = new ItemStack(Material.WOOL, 1);
+	static final String italic_name = "" + ChatColor.RESET + ChatColor.ITALIC + "ITALIC";
+	private static final ItemMeta italic_meta = italic.getItemMeta();
 	
-	static ItemStack strike = new ItemStack(Material.WOOL, 1);
-	static String strike_name = "" + ChatColor.RESET + ChatColor.STRIKETHROUGH + "STRIKETHROUGH";
-	static ItemMeta strike_meta = strike.getItemMeta();
+	private static final ItemStack strike = new ItemStack(Material.WOOL, 1);
+	static final String strike_name = "" + ChatColor.RESET + ChatColor.STRIKETHROUGH + "STRIKETHROUGH";
+	private static final ItemMeta strike_meta = strike.getItemMeta();
 	
-	static ItemStack random = new ItemStack(Material.WOOL, 1);
-	static String random_name = "" + ChatColor.RESET + ChatColor.WHITE + "RANDOM";
-	static ItemMeta random_meta = random.getItemMeta();
+	private static final ItemStack random = new ItemStack(Material.WOOL, 1);
+	static final String random_name = "" + ChatColor.RESET + ChatColor.WHITE + "RANDOM";
+	private static final ItemMeta random_meta = random.getItemMeta();
 	
-	static ItemStack rainbow = new ItemStack(Material.WOOL, 1);
-	static String rainbow_name = "" + ChatColor.RESET + ChatColor.WHITE + "RAINBOW";
-	static ItemMeta rainbow_meta = rainbow.getItemMeta();
+	private static final ItemStack rainbow = new ItemStack(Material.WOOL, 1);
+	static final String rainbow_name = "" + ChatColor.RESET + ChatColor.WHITE + "RAINBOW";
+	private static final ItemMeta rainbow_meta = rainbow.getItemMeta();
 	
-	static Wool g = new Wool(DyeColor.LIME);
-	static Wool w = new Wool(DyeColor.WHITE);
-	static ItemStack gis = g.toItemStack();
-	static ItemStack wis = w.toItemStack();
+	private static final Wool g = new Wool(DyeColor.LIME);
+	private static final Wool w = new Wool(DyeColor.WHITE);
+	private static final ItemStack gis = g.toItemStack();
+	private static final ItemStack wis = w.toItemStack();
 	
 	public static void LoadInv(Player p) {
-		
 		config.saveConfig();
 		config.reloadConfig();
 		
@@ -138,7 +137,6 @@ public class ChatColorsInventory {
 		dark_green_meta.setDisplayName(dark_green_name);
 		dark_green_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		dark_green.setItemMeta(dark_green_meta);
-		
 		dark_aqua_meta.setDisplayName(dark_aqua_name);
 		dark_aqua_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 		dark_aqua.setItemMeta(dark_aqua_meta);
@@ -214,7 +212,7 @@ public class ChatColorsInventory {
 		rainbow.setItemMeta(rainbow_meta);
 		
 		//ADD ENCHANTMENT TO LAST USED COLOR
-		if (!Boolean.valueOf(config.getConfig().getBoolean(puuid + ".random")) && !Boolean.valueOf(config.getConfig().getBoolean(puuid + ".rainbow"))) {
+		if (!config.getConfig().getBoolean(puuid + ".random") && !config.getConfig().getBoolean(puuid + ".rainbow")) {
 			
 			String color = config.getConfig().getString(puuid + ".color");
 			Enchantment e = Enchantment.SILK_TOUCH;
@@ -308,7 +306,7 @@ public class ChatColorsInventory {
 		
 	}
 	
-	static void enabled(boolean b, ItemStack i) {
+	private static void enabled(boolean b, ItemStack i) {
 		if (b) {
 			i.setData(g);
 			i.setDurability(gis.getDurability());
