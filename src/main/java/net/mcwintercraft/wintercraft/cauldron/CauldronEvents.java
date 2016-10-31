@@ -22,7 +22,7 @@ import org.bukkit.potion.PotionType;
 import java.util.Random;
 
 public class CauldronEvents implements Listener{
-	
+	//test
 	@EventHandler
 	public void onCauldronPlace(BlockPlaceEvent e) {
 		if(e.getBlockPlaced().getType() == Material.CAULDRON) {

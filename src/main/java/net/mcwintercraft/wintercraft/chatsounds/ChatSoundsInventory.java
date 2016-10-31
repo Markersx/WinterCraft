@@ -210,7 +210,7 @@ public class ChatSoundsInventory {
 	public static final Inventory entityinv = Bukkit.createInventory(null, 54, "Entity Sounds");
 	private static final ItemStack entityinv_item = new ItemStack(Material.RECORD_9);
 
-    //TEST
+
     public static Inventory entityinv_armorstand = Bukkit.createInventory(null, 9, "Armor Stand Sounds");
     static ItemStack entityinv_armorstand_item = new ItemStack(Material.ARMOR_STAND);
 	static ItemStack entity_armorstand_break = new ItemStack(Material.ARMOR_STAND);
