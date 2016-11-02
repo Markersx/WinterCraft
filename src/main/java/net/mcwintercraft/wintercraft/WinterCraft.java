@@ -4,19 +4,16 @@ import net.mcwintercraft.wintercraft.cauldron.CauldronEvents;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsEvents;
 import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
 import net.mcwintercraft.wintercraft.commands.*;
-import net.mcwintercraft.wintercraft.recipes.mainrecipe;
-import net.mcwintercraft.wintercraft.warps.warps;
+import net.mcwintercraft.wintercraft.playerwarps.PlayerWarpsEvents;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.logging.Logger;
-
 public class WinterCraft extends JavaPlugin implements Listener {
 	
 	private static WinterCraft plugin;
-    private static final Logger LOGGER = Logger.getLogger("WinterCraft");
 	
 	private WinterCraftConfig playerwarpsconfig;
 	private WinterCraftConfig chatcolorsconfig;
@@ -30,24 +27,23 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		chatcolorsconfig = WinterCraftConfig.getConfig("chatcolors");
 		chatsoundsconfig = WinterCraftConfig.getConfig("chatsounds");
 
-        this.saveDefaultConfig();
-
 		//FileConfiguration playerwarpsfile = playerwarpsconfig.getConfig();
 		//FileConfiguration chatcolorsfile = chatcolorsconfig.getConfig();
 		//FileConfiguration chatsoundsfile = chatsoundsconfig.getConfig();
 
-		getCommand("color").setExecutor(new Commandchatcolor());
-		getCommand("mywarp").setExecutor(new Commandmywarp());
-		getCommand("vote").setExecutor(new Commandvote());
-		getCommand("rank").setExecutor(new Commandrank());
-		getCommand("website").setExecutor(new Commandwebsite());
-		getCommand("srfw").setExecutor(new Commandsrfw());
-		getCommand("sound").setExecutor(new Commandchatsound());
-		getCommand("fakeop").setExecutor(new Commandfakeop());
-		getCommand("fakedeop").setExecutor(new Commandfakedeop());
+		getCommand("color").setExecutor(new Command_chatcolor());
+		getCommand("mywarp").setExecutor(new Command_mywarp());
+		getCommand("vote").setExecutor(new Command_vote());
+		getCommand("rank").setExecutor(new Command_rank());
+		getCommand("website").setExecutor(new Command_website());
+		getCommand("srfw").setExecutor(new Command_srfw());
+		getCommand("sound").setExecutor(new Command_chatsound());
+		getCommand("test").setExecutor(new Command_test());
+		getCommand("fakeop").setExecutor(new Command_fakeop());
+		getCommand("fakedeop").setExecutor(new Command_fakedeop());
 		
 		registerEvents(this, 
-				new warps(),
+				new PlayerWarpsEvents(), 
 				new ChatColorsEvents(),
 				new ChatSoundsEvents(),
 				new PreventCosmetics(),
@@ -55,10 +51,8 @@ public class WinterCraft extends JavaPlugin implements Listener {
 				new SlimeBall(),
 				new CauldronEvents()
 				);
-
-        mainrecipe.createrecip();
-
-		this.getLogger().info("WinterCraft Enabled");
+		
+		this.getLogger().info("WinterCraft Enabled");        
 	}
 
 	public void onDisable() {
@@ -71,8 +65,8 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		
 		this.getLogger().info("WinterCraft Disabled");
 	}
-
-    private static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
+	
+	private static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
 		for (Listener listener : listeners) {
 			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
 		}

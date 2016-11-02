@@ -62,3 +62,8 @@ commands:
       usage: /<command> <name> or /<command> *
       permission: wintercraft.fakedeop
       permission-message: De-opped
+   marry:
+         description: Marry anothe player.
+         usage: /<command> <name>
+         permission: wintercraft.marry
+         permission-message: You don't have permission to marry this player
