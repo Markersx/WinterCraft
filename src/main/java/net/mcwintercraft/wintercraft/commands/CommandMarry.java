@@ -12,7 +12,7 @@ public class CommandMarry implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("marry") && sender instanceof Player) {
             Player p = (Player) sender;
             if (args.length == 1) {
-                Player target = Bukkit.getServer().getPlayer(args[0]);
+                Player target = (Bukkit.getServer().getPlayer(args[0]));
                 if (target != null) {
                     p.sendMessage("You have just married " + args[0]);
                     target.sendMessage(p.getDisplayName() + " Has just married you");
