@@ -6,7 +6,6 @@ import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
 import net.mcwintercraft.wintercraft.commands.*;
 import net.mcwintercraft.wintercraft.playerwarps.PlayerWarpsEvents;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -41,9 +40,10 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		getCommand("test").setExecutor(new Command_test());
 		getCommand("fakeop").setExecutor(new Command_fakeop());
 		getCommand("fakedeop").setExecutor(new Command_fakedeop());
-		
+		getCommand("marry").setExecutor(new CommandMarry());
+
 		registerEvents(this, 
-				new PlayerWarpsEvents(), 
+				new PlayerWarpsEvents(),
 				new ChatColorsEvents(),
 				new ChatSoundsEvents(),
 				new PreventCosmetics(),
@@ -66,7 +66,7 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		this.getLogger().info("WinterCraft Disabled");
 	}
 	
-	private static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
+	private static void registerEvents(Plugin plugin, Listener... listeners) {
 		for (Listener listener : listeners) {
 			Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
 		}
