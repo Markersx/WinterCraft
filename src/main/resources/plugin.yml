@@ -2,6 +2,7 @@ name: WinterCraft
 main:  net.mcwintercraft.wintercraft.WinterCraft
 version: 0.0.1
 authors: [Markersx, Pentahexide]
+depends: [Votifier]
 commands:
    mywarp:
       description: Displayes owned warps.

@@ -1,7 +1,7 @@
 package net.mcwintercraft.wintercraft.chatcolors;
 
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;

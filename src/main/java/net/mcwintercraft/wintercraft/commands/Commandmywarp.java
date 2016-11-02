@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class Command_mywarp implements CommandExecutor {
+public class Commandmywarp implements CommandExecutor {
 	
 	private final WinterCraftConfig config = WinterCraftConfig.getConfig("playerwarps");
 

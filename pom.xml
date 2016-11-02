@@ -9,6 +9,8 @@
 	<groupId>net.mcwintercraft</groupId>
 	<artifactId>WinterCraft</artifactId>
 	<version>0.0.1</version>
+
+
 	
 	<dependencies>
 	
@@ -46,7 +48,57 @@
   			<artifactId>fanciful</artifactId>
   			<version>0.4.0-SNAPSHOT</version>
 		</dependency>	
-		
+
+        <!-- ProtocolLib -->
+
+        <dependency>
+            <groupId>com.comphenix.protocol</groupId>
+            <artifactId>ProtocolLib</artifactId>
+            <version>4.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Essentialsx -->
+
+        <dependency>
+            <groupId>net.ess3</groupId>
+            <artifactId>EssentialsXParent</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.ess3</groupId>
+            <artifactId>EssentialsX</artifactId>
+            <version>2.0.1</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>craftbukkit</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>mkremins</groupId>
+                    <artifactId>fanciful</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.comphenix.protocol</groupId>
+                    <artifactId>ProtocolLib</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- NuVotifier -->
+
+        <dependency>
+            <groupId>com.vexsoftware</groupId>
+            <artifactId>nuvotifier</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
 	</dependencies>
 
 	<!-- Properties -->
@@ -127,6 +179,12 @@
 		<system>Github</system>
 		<url>https://github.com/Markersx/WinterCraft/issues</url>
 	</issueManagement>
+
+    <scm>
+        <connection>scm:git:https://github.com/Markersx/WinterCraft.git</connection>
+        <developerConnection>scm:git:https://github.com/Markersx/WinterCraft.git</developerConnection>
+        <url>https://github.com/Markersx/WinterCraft</url>
+    </scm>
 	
 	<repositories>
 	
@@ -143,7 +201,33 @@
     		<id>stealthyone-repo</id>
     		<url>http://repo.stealthyone.com/content/groups/public</url>
 		</repository>
-		
+
+        <!-- ProtocolLib -->
+
+        <repository>
+            <id>dmulloy2-repo</id>
+            <url>http://repo.dmulloy2.net/content/groups/public/</url>
+        </repository>
+
+        <!-- Essentialsx -->
+
+        <repository>
+            <id>drtshock-repo</id>
+            <url>http://ci.drtshock.net/plugin/repository/everything</url>
+        </repository>
+
+        <repository>
+            <id>ess-repo</id>
+            <url>http://repo.ess3.net/content/groups/essentials</url>
+        </repository>
+
+        <!-- NuVotifier -->
+
+        <repository>
+            <id>nuv</id>
+            <url>https://travis-ci.org/NuVotifier/NuVotifier</url>
+        </repository>
+
 	</repositories>
 	
 </project>

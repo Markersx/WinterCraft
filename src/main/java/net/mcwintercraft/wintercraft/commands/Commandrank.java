@@ -1,16 +1,21 @@
 package net.mcwintercraft.wintercraft.commands;
 
+import com.earth2me.essentials.User;
 import mkremins.fanciful.FancyMessage;
+import net.ess3.api.IEssentials;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Command_rank implements CommandExecutor {
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+public class Commandrank implements CommandExecutor {
+
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("rank") && sender instanceof Player) {
 			Player p = (Player) sender;
+            IEssentials ess = null;
+            p.sendMessage(ChatColor.BOLD + "" + ChatColor.WHITE + "CURRENT RANK: " + new User(p, ess).getGroup());
 			FancyMessage fm = new FancyMessage("- DONOR RANKS -\n");
 			fm.color(ChatColor.GREEN);
 			fm.style(ChatColor.BOLD);
@@ -32,7 +37,7 @@ public class Command_rank implements CommandExecutor {
 			fm.style(ChatColor.BOLD);
 			fm.tooltip(ChatColor.BOLD + "- Nickname\n" + 
 					ChatColor.BOLD + "- Hat\n" + 
-					ChatColor.BOLD + "- Colors" +
+					ChatColor.BOLD + "- Colors\n" +
 					ChatColor.BOLD + "Chests: 2\n" + 
 					ChatColor.BOLD + "Homes: 2\n" + 
 					ChatColor.BOLD + "Warps: 2");
@@ -105,7 +110,7 @@ public class Command_rank implements CommandExecutor {
 			fm.then("[YT]\n");
 			fm.color(ChatColor.RED);
 			fm.style(ChatColor.BOLD);
-			fm.tooltip(ChatColor.BOLD + "Spectate\n");
+			fm.tooltip(ChatColor.BOLD + "- Spectate");
 			fm.link("http://www.mcwintercraft.net/apply");
 			
 			fm.then("[MOD]\n");
@@ -132,6 +137,4 @@ public class Command_rank implements CommandExecutor {
 			return true;
 		}
 	}
-	
-	
 }

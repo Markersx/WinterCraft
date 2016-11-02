@@ -2,8 +2,19 @@
 sl-default: true
 
 #List of commands to bar while in spectator mode
+#permission to override command-barring: sl.override
 barred-commands:
 - sethome
 - home
 
-#permission to override command-barring: sl.override
+vote-links:
+- http://www.minecraftforum.net/servers/10081-wintercraft/vote
+- http://www.minelist.net/vote/1435
+- https://www.minestatus.net/149280-wintercraft
+- http://www.topg.org/Minecraft/in-442629
+- http://www.minecraftserverfinder.com/vote.php?id=13163
+- https://www.minecraftlist.org/vote/3718
+- http://www.serverpact.com/vote-34635
+- http://www.planetminecraft.com/server/wintercraft-3795381/vote
+- http://www.minecraft-mp.com/server/132996/vote
+- http://www.minetrack.net/vote/12677

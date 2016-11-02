@@ -7,21 +7,21 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Command_fakedeop implements CommandExecutor {
+public class Commandfakeop implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("fakedeop")) {
-			// /fakedeop <player>
+		if (cmd.getName().equalsIgnoreCase("fakeop")) {
+			// /fakeop <player>
 			if (args.length == 1) {
 				if(args[0].equalsIgnoreCase("*")) {
 					for (Player op : Bukkit.getOnlinePlayers()) {
 						for (Player ap : Bukkit.getOnlinePlayers()) {
-							op.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "[Server: De-opped " + ap.getName() + "]");
+							op.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "[Server: Opped " + ap.getName() + "]");
 						}
 					}
 					return true;
 				} else {
 					for(Player op : Bukkit.getOnlinePlayers()){
-						op.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "[Server: De-opped " + args[0] + "]");
+						op.sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + "[Server: Opped " + args[0] + "]");
 					}
 					return true;
 				}

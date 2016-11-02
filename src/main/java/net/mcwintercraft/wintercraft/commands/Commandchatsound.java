@@ -1,16 +1,17 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import org.bukkit.ChatColor;
+import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsInventory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Command_website implements CommandExecutor {
+public class Commandchatsound implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("website") && sender instanceof Player) {
-			Player player = (Player) sender;
-			player.sendMessage(ChatColor.AQUA + "http://www.mcwintercraft.net");
+		if (cmd.getName().equalsIgnoreCase("sound") && sender instanceof Player) {
+			Player p = (Player) sender;
+			String uuid = p.getUniqueId().toString();
+			ChatSoundsInventory.LoadInv(p, uuid);
 			return true;
 		}
 		return false;

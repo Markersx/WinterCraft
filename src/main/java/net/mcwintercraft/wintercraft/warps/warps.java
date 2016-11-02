@@ -1,4 +1,4 @@
-package net.mcwintercraft.wintercraft.playerwarps;
+package net.mcwintercraft.wintercraft.warps;
 
 import net.mcwintercraft.wintercraft.WinterCraftConfig;
 import net.mcwintercraft.wintercraft.WinterCraftUtil;
@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import java.util.Iterator;
 import java.util.List;
 
-public class PlayerWarpsEvents implements Listener {
+public class warps implements Listener {
 	
 	private final WinterCraftConfig config = WinterCraftConfig.getConfig("playerwarps");
 

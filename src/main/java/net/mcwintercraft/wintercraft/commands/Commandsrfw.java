@@ -17,7 +17,7 @@ import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.Random;
 
-public class Command_srfw implements CommandExecutor {
+public class Commandsrfw implements CommandExecutor {
 	
 	private static final Random random = new Random();
 	private int srfws = 0;
@@ -36,7 +36,7 @@ public class Command_srfw implements CommandExecutor {
 				return true;
 			}
 			
-			//shoot random firework for everyone amount and radious
+			//shoot random firework for everyone amount and radius
 			if (args.length > 0) {
 				Player target = (Bukkit.getServer().getPlayer(args[0]));
 				if (args.length == 3){
@@ -94,12 +94,12 @@ public class Command_srfw implements CommandExecutor {
     private void srfws() {
 		while (srfws > 0) {
 			for(Player p : Bukkit.getOnlinePlayers()){
-				Location locat = p.getLocation();
+				Location loc = p.getLocation();
 				if (radius != 0) {
-					locat.add(random.nextInt(radius), 0, random.nextInt(radius));
-					locat.subtract(random.nextInt(radius), 0, random.nextInt(radius));
+                    loc.add(random.nextInt(radius), 0, random.nextInt(radius));
+                    loc.subtract(random.nextInt(radius), 0, random.nextInt(radius));
 				}
-				shootRandomFirework(locat, 1);
+				shootRandomFirework(loc, 1);
 			}
 			srfws--;
 		}
