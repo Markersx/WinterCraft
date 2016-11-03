@@ -1,6 +1,8 @@
 package net.mcwintercraft.wintercraft.commands;
 
 import mkremins.fanciful.FancyMessage;
+import net.ess3.api.IEssentials;
+import net.mcwintercraft.wintercraft.UserData;
 import net.mcwintercraft.wintercraft.WinterCraft;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -13,19 +15,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class Commandvote implements CommandExecutor {
-
-    private static Commandvote instance;
-    private long votetimer;
-    private int votes;
-
+public class Commandvote extends UserData implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("vote") && sender instanceof Player) {
-            if (args.length > 0) {
-                long twentyfourhour = 86400000;
-                this.votetimer = System.currentTimeMillis() + twentyfourhour;
-                return true;
-            }
             FileConfiguration config = WinterCraft.getPlugin().getConfig();
             List<String> links = config.getStringList("vote-links");
 			Player p = (Player) sender;
@@ -35,21 +27,18 @@ public class Commandvote implements CommandExecutor {
             fm.link("http://www.mcwintercraft.net/vote");
             fm.send(p);
             for(String s : links) {
-                String[] linkname;
-                linkname = s.split("\\.");
-                FancyMessage vl = new FancyMessage("[" + linkname[1].toUpperCase() + "]");
+                String[] address;
+                address = s.split("\\.");
+                FancyMessage vl = new FancyMessage("[" + address[1].toUpperCase() + "]");
                 vl.color(ChatColor.AQUA);
                 vl.style(ChatColor.BOLD);
                 vl.link(s);
                 String as;
-                as = formatDateDiff(votetimer());
+                as = formatDateDiff(this.getVoteTimer(address[1]));
                 vl.tooltip(ChatColor.BOLD + as);
                 vl.send(p);
             }
-            FancyMessage tv = new FancyMessage(String.valueOf(this.votes));
-            tv.color(ChatColor.AQUA);
-            tv.style(ChatColor.BOLD);
-            tv.then(" total votes");
+            FancyMessage tv = new FancyMessage("TOTAL VOTES: " + String.valueOf(this.getTotalVotes()));
             tv.color(ChatColor.AQUA);
             tv.style(ChatColor.BOLD);
             tv.send(p);
@@ -110,9 +99,5 @@ public class Commandvote implements CommandExecutor {
         --diff;
         fromDate.setTimeInMillis(savedDate);
         return diff;
-    }
-
-    private long votetimer() {
-        return this.votetimer;
     }
 }

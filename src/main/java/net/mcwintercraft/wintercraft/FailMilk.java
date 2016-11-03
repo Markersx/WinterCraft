@@ -16,11 +16,13 @@ class FailMilk implements Listener {
 		Player p = e.getPlayer();
 		EntityType ent = e.getRightClicked().getType();
 		ItemStack hand = p.getInventory().getItemInMainHand();
-		
+
+        //TODO FIX SENDING THE MESSAGE TO THE PLAYER TWICE WITH 1 CLICK
+
 		//trying to milk an entity other than a cow will fail
 		if (hand.getType() == Material.BUCKET && ent != EntityType.COW && ent != EntityType.MUSHROOM_COW) {
 			p.sendMessage("You tried to milk the " + e.getRightClicked().getName() + " but failed...");
 			e.setCancelled(true);
-		}
+    }
 	}
 }

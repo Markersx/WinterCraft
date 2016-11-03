@@ -1,6 +1,7 @@
 package net.mcwintercraft.wintercraft.chatcolors;
 
-import net.mcwintercraft.wintercraft.WinterCraftConfig;
+import net.mcwintercraft.wintercraft.UserData;
+import net.mcwintercraft.wintercraft.WinterCraft;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -10,79 +11,55 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Wool;
 
 import java.util.Random;
 
-public class ChatColorsEvents implements Listener {
+public class ChatColorsEvents extends UserData implements Listener {
 
-	private static final WinterCraftConfig config = WinterCraftConfig.getConfig("chatcolors");
-	
-	@EventHandler
-	public void onPlayerLogin(PlayerLoginEvent e) {
-		Player p = e.getPlayer();
-		String puuid = p.getUniqueId().toString(); 
-		if (config.getConfig().getString(puuid) == null) {
-			loadchatcolorsconfig(puuid, p);
-		}  else {
-			   if (p.getName().equals(config.getConfig().getString(puuid + ".name"))) {
-				   config.getConfig().set(puuid + ".name", p.getName());
-			   }
-		   }
-	}
-	
-	@EventHandler
+    @EventHandler
 	public void onSendMessage(AsyncPlayerChatEvent e) {
-		
-		Player p = e.getPlayer();
-		String puuid = p.getUniqueId().toString();
+
+        this.setUser(e.getPlayer());
 		String msg = e.getMessage();
 		String codes = "";
-		String color = config.getConfig().getString(puuid + ".color");
-		
-		if (config.getConfig().getString(puuid) == null) {
-			loadchatcolorsconfig(puuid, p);
-		}
-		
-		if (!p.getName().equals(config.getConfig().getString(puuid + ".name"))) {
-			config.getConfig().set(puuid + ".name", p.getName());
-		}
+		String color = this.getChatColor();
 
-		if (config.getConfig().getBoolean(puuid + ".bold")) {
+		if (this.isChatColorBold()) {
 			codes = codes + ChatColor.BOLD;
 		}
 
-		if (config.getConfig().getBoolean(puuid + ".underline")) {
+		if (this.isChatColorUnderline()) {
 			codes = codes + ChatColor.UNDERLINE;
 		}
 
-		if (config.getConfig().getBoolean(puuid + ".strikethrough")) {
+		if (this.isChatColorStrike()) {
 			codes = codes + ChatColor.STRIKETHROUGH;
 		}
 
-		if (config.getConfig().getBoolean(puuid + ".magic")) {
+		if (this.isChatColorMagic()) {
 			codes = codes + ChatColor.MAGIC;
 		}
 
-		if (config.getConfig().getBoolean(puuid + ".italic")) {
+		if (this.isChatColorItalic()) {
 			codes = codes + ChatColor.ITALIC;
 		}
 
-		if (config.getConfig().getBoolean(puuid + ".random")) {
-			color = rc(puuid, p);
+		if (this.isChatColorRandom()) {
+			color = rc();
 		}
 
-		if (config.getConfig().getBoolean(puuid + ".rainbow")) {
+		if (this.isChatColorRainbow()) {
 			
 			String[] ms = msg.split("");
 			msg = "";
 
 			for (int i = 0; i < ms.length; i++) {
+
 				if (!ms[i].isEmpty()) {
-					ms[i] = ChatColor.valueOf(rc(puuid, p)) + codes + ms[i];
+					ms[i] = ChatColor.valueOf(rc()) + codes + ms[i];
 				}
 
 				msg = msg + ms[i];
@@ -94,9 +71,9 @@ public class ChatColorsEvents implements Listener {
 
 	@EventHandler
 	public void onInv(InventoryClickEvent e) {
-		
+
 		Player p = (Player) e.getWhoClicked();
-		String puuid = p.getUniqueId().toString();
+        this.setUser(p);
 		Inventory inventory = e.getInventory();
 		ItemStack clicked = e.getCurrentItem();
 		
@@ -109,31 +86,27 @@ public class ChatColorsEvents implements Listener {
 				String cl = clicked.getItemMeta().getDisplayName();
 				
 				if (cl.equals(gc(cl))) {
-					config.getConfig().set(puuid + ".color", cl.replace(" ", "_").substring(2));
-					config.saveConfig();
-					config.reloadConfig();
+                    this.setChatColor(cl.replace(" ", "_").substring(2));
 					ench(inventory, clicked);
 				}
 
 				if (cl.equals(gs(cl))) {
-					
-					Boolean bol = config.getConfig().getBoolean(puuid + "." + cl.toLowerCase().substring(4));
-					config.getConfig().set(puuid + "." + cl.toLowerCase().substring(4), !bol);
-					
+
+                    String s = cl.toLowerCase().substring(4);
+					Boolean bol = gsb(cl);
+                    WinterCraft.ess.getUser(p).setConfigProperty("chatColor" + "." + s,!bol);
+
 					if (!bol) {
 						Wool g = new Wool(DyeColor.LIME);
 						ItemStack wis = g.toItemStack();
 						clicked.setData(g);
 						clicked.setDurability(wis.getDurability());
 					} else {
-						Wool w = new Wool(DyeColor.WHITE);
-						ItemStack wis = w.toItemStack();
-						clicked.setData(w);
-						clicked.setDurability(wis.getDurability());
-					}
-					
-					config.saveConfig();
-					config.reloadConfig();
+                        Wool w = new Wool(DyeColor.WHITE);
+                        ItemStack wis = w.toItemStack();
+                        clicked.setData(w);
+                        clicked.setDurability(wis.getDurability());
+                    }
 				}
 			}
 		}
@@ -166,6 +139,34 @@ public class ChatColorsEvents implements Listener {
 		}
 		return ss;
 	}
+
+    private boolean gsb(String cl) {
+        boolean ssb = false;
+        switch (cl.substring(4)) {
+            case "BOLD":
+                ssb = this.isChatColorBold();
+                break;
+            case "UNDERLINE":
+                ssb = this.isChatColorUnderline();
+                break;
+            case "STRIKETHROUGH":
+                ssb = this.isChatColorStrike();
+                break;
+            case "MAGIC":
+                ssb = this.isChatColorMagic();
+                break;
+            case "ITALIC":
+                ssb = this.isChatColorItalic();
+                break;
+            case "RANDOM":
+                ssb = this.isChatColorRainbow();
+                break;
+            case "RAINBOW":
+                ssb = this.isChatColorRainbow();
+                break;
+        }
+        return ssb;
+    }
 
 	private String gc(String cl) {
 		String cs;
@@ -239,15 +240,11 @@ public class ChatColorsEvents implements Listener {
 		}		
 	}
 
-	private String rc(String puuid, Player p) {
+	private String rc() {
 		
 		Random rand = new Random();
 		String cs;
-		
-		if (config.getConfig().getString(puuid) == null) {
-			loadchatcolorsconfig(puuid, p);
-		}		
-		
+
 		int rc = rand.nextInt(15);
 		
 		switch (rc) {
@@ -305,17 +302,17 @@ public class ChatColorsEvents implements Listener {
 		return cs;
 	}
 	
-	private void loadchatcolorsconfig(String puuid, Player p) {
-		config.getConfig().set(puuid + ".name", p.getName());
-		config.getConfig().set(puuid + ".color", "WHITE");
-		config.getConfig().set(puuid + ".bold", Boolean.FALSE);
-		config.getConfig().set(puuid + ".underline", Boolean.FALSE);
-		config.getConfig().set(puuid + ".strikethrough", Boolean.FALSE);
-		config.getConfig().set(puuid + ".magic", Boolean.FALSE);
-		config.getConfig().set(puuid + ".italic", Boolean.FALSE);
-		config.getConfig().set(puuid + ".random", Boolean.FALSE);
-		config.getConfig().set(puuid + ".rainbow", Boolean.FALSE);
-		config.saveConfig();
-		config.reloadConfig();
-	}
+	//private void loadchatcolorsconfig(String puuid, Player p) {
+	//	config.getConfig().set(puuid + ".name", p.getName());
+	//	config.getConfig().set(puuid + ".color", "WHITE");
+	//	config.getConfig().set(puuid + ".bold", Boolean.FALSE);
+	//	config.getConfig().set(puuid + ".underline", Boolean.FALSE);
+	//	config.getConfig().set(puuid + ".strikethrough", Boolean.FALSE);
+	//	config.getConfig().set(puuid + ".magic", Boolean.FALSE);
+	//	config.getConfig().set(puuid + ".italic", Boolean.FALSE);
+	//	config.getConfig().set(puuid + ".random", Boolean.FALSE);
+	//	config.getConfig().set(puuid + ".rainbow", Boolean.FALSE);
+	//	config.saveConfig();
+	//	config.reloadConfig();
+	//}
 }

@@ -1,6 +1,7 @@
 package net.mcwintercraft.wintercraft.chatcolors;
 
-import net.mcwintercraft.wintercraft.WinterCraftConfig;
+import net.ess3.api.IEssentials;
+import net.mcwintercraft.wintercraft.UserData;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
@@ -14,9 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 
-public class ChatColorsInventory {
-	
-	private static final WinterCraftConfig config = WinterCraftConfig.getConfig("chatcolors");
+public class ChatColorsInventory extends UserData {
+
 	public static final Inventory colorinv = Bukkit.createInventory((InventoryHolder) null, 54, "Color Options");
 	
 	//CHAT COLORS
@@ -117,13 +117,10 @@ public class ChatColorsInventory {
 	private static final Wool w = new Wool(DyeColor.WHITE);
 	private static final ItemStack gis = g.toItemStack();
 	private static final ItemStack wis = w.toItemStack();
-	
-	public static void LoadInv(Player p) {
-		config.saveConfig();
-		config.reloadConfig();
-		
-		String puuid = p.getUniqueId().toString();
-		
+
+    public void LoadInv(Player p) {
+
+        this.setUser(p);
 		//CHAT COLORS META
 		black_meta.setDisplayName(black_name);
 		black_meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -211,9 +208,9 @@ public class ChatColorsInventory {
 		rainbow.setItemMeta(rainbow_meta);
 		
 		//ADD ENCHANTMENT TO LAST USED COLOR
-		if (!config.getConfig().getBoolean(puuid + ".random") && !config.getConfig().getBoolean(puuid + ".rainbow")) {
+		if (this.isChatColorRandom() || this.isChatColorRainbow()) {
 			
-			String color = config.getConfig().getString(puuid + ".color");
+			String color = this.getChatColor();
 			Enchantment e = Enchantment.SILK_TOUCH;
 			
 			switch (color) {
@@ -285,13 +282,13 @@ public class ChatColorsInventory {
 		colorinv.setItem(39, yellow);
 		colorinv.setItem(40, white);
 		
-		enabled(config.getConfig().getBoolean(puuid + ".bold"), bold);
-		enabled(config.getConfig().getBoolean(puuid + ".magic"), magic);	
-		enabled(config.getConfig().getBoolean(puuid + ".underline"), underline);
-		enabled(config.getConfig().getBoolean(puuid + ".italic"), italic);		
-		enabled(config.getConfig().getBoolean(puuid + ".strikethrough"), strike);
-		enabled(config.getConfig().getBoolean(puuid + ".random"), random);	
-		enabled(config.getConfig().getBoolean(puuid + ".rainbow"), rainbow);
+		enabled(this.isChatColorBold(), bold);
+		enabled(this.isChatColorMagic(), magic);
+		enabled(this.isChatColorUnderline(), underline);
+		enabled(this.isChatColorItalic(), italic);
+		enabled(this.isChatColorStrike(), strike);
+		enabled(this.isChatColorRandom(), random);
+		enabled(this.isChatColorRainbow(), rainbow);
 		
 		colorinv.setItem(15, bold);
 		colorinv.setItem(42, magic);
@@ -304,7 +301,7 @@ public class ChatColorsInventory {
 		p.openInventory(ChatColorsInventory.colorinv);
 		
 	}
-	
+
 	private static void enabled(boolean b, ItemStack i) {
 		if (b) {
 			i.setData(g);

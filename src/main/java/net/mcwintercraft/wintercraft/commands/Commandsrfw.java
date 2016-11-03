@@ -1,6 +1,6 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import net.mcwintercraft.wintercraft.WinterCraftUtil;
+import com.earth2me.essentials.utils.NumberUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
@@ -41,7 +41,7 @@ public class Commandsrfw implements CommandExecutor {
 				Player target = (Bukkit.getServer().getPlayer(args[0]));
 				if (args.length == 3){
 					// /srfw <player> <amount> <radius>
-					if (target != null && WinterCraftUtil.isInt(args[1]) && WinterCraftUtil.isInt(args[2])) {
+					if (target != null && NumberUtil.isInt(args[1]) && NumberUtil.isInt(args[2])) {
 						srfws2 = Integer.parseInt(args[1]);
 						radius = Integer.parseInt(args[2]);
 						srfws2(target);
@@ -52,14 +52,14 @@ public class Commandsrfw implements CommandExecutor {
 				}
 				if (args.length == 2) {
 					// /srfw <player> <amount>
-					if (target != null && WinterCraftUtil.isInt(args[1])) {
+					if (target != null && NumberUtil.isInt(args[1])) {
 						radius = 0;
 						srfws2 = Integer.parseInt(args[1]);
 						srfws2(target);
 						return true;
 					}
 					// /srfw <amount> <radius>
-					if (WinterCraftUtil.isInt(args[0]) && WinterCraftUtil.isInt(args[1])) {
+					if (NumberUtil.isInt(args[0]) && NumberUtil.isInt(args[1])) {
 						srfws = Integer.parseInt(args[0]);
 						radius = Integer.parseInt(args[1]);
 						srfws();
@@ -70,7 +70,7 @@ public class Commandsrfw implements CommandExecutor {
 				
 				if (args.length == 1) {
 					// /srfw <amount>
-					if (WinterCraftUtil.isInt(args[0])) {
+					if (NumberUtil.isInt(args[0])) {
 						radius = 0;
 						srfws = Integer.parseInt(args[0]);
 						srfws();

@@ -1,8 +1,7 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import com.earth2me.essentials.User;
 import mkremins.fanciful.FancyMessage;
-import net.ess3.api.IEssentials;
+import net.mcwintercraft.wintercraft.WinterCraft;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,8 +13,7 @@ public class Commandrank implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("rank") && sender instanceof Player) {
 			Player p = (Player) sender;
-            IEssentials ess = null;
-            p.sendMessage(ChatColor.BOLD + "" + ChatColor.WHITE + "CURRENT RANK: " + new User(p, ess).getGroup());
+
 			FancyMessage fm = new FancyMessage("- DONOR RANKS -\n");
 			fm.color(ChatColor.GREEN);
 			fm.style(ChatColor.BOLD);
@@ -129,7 +127,13 @@ public class Commandrank implements CommandExecutor {
 					ChatColor.BOLD + "- Ban Hammer\n" + 
 					ChatColor.BOLD + "- Vanish");
 			fm.link("http://www.mcwintercraft.net/apply");
-			
+
+            fm.then("- CURRENT RANK -");
+            fm.color(ChatColor.GREEN);
+            fm.style(ChatColor.BOLD);
+            fm.then(WinterCraft.ess.getUser(p).getGroup().toUpperCase());
+            fm.style(ChatColor.BOLD);
+
 			fm.send(p);
 			return true;
 		} else {

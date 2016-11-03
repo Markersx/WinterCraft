@@ -1,12 +1,10 @@
 package net.mcwintercraft.wintercraft.commands;
 
-import com.earth2me.essentials.CommandSource;
-import com.earth2me.essentials.commands.IEssentialsCommand;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Server;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.EntityType;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -14,13 +12,9 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectTypeWrapper;
 
-public abstract class Commandtest implements IEssentialsCommand {
-    Commandtest() {
-        this.getName();
-    }
-
-    public void run(Server server, CommandSource sender, String commandLabel, String[] args) throws Exception {
-        if(args.length > 0) {
+public class Commandtest implements CommandExecutor {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("test") && sender instanceof Player && args.length == 0) {
 
             Player p = (Player) sender;
             ItemStack i = new ItemStack(Material.POTION);
@@ -32,17 +26,9 @@ public abstract class Commandtest implements IEssentialsCommand {
             i.setItemMeta(pm);
             p.getInventory().addItem(i);
 
-            ArmorStand as = (ArmorStand) p.getWorld().spawnEntity(p.getLocation().subtract(0, 1, 0).add(0.5, 0, 0.5), EntityType.ARMOR_STAND);
-            as.setCollidable(false);
-            as.setGravity(false);
-            as.setVisible(false);
-            as.setInvulnerable(true);
-            as.setCustomNameVisible(true);
-            as.setRemoveWhenFarAway(false);
-            as.setCustomName("EMPTY");
-            as.setChestplate(new ItemStack(Material.STONE));
-            as.setLeggings(new ItemStack(Material.STONE));
-            as.setHelmet(new ItemStack(Material.STONE));
+            return true;
+        } else {
+            return false;
         }
     }
 }

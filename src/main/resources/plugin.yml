@@ -4,12 +4,6 @@ version: 0.0.1
 authors: [Markersx, Pentahexide]
 depends: [Votifier]
 commands:
-   mywarp:
-      description: Displayes owned warps.
-      usage: /<command>
-      aliases: [mywarps]
-      permission: wintercraft.mywarp
-      permission-message: You don't have <permission>
    color:
       description: Opens ChatColor options.
       usage: /<command> <option> type /<command> help for a list of options.
@@ -63,7 +57,11 @@ commands:
       permission: wintercraft.fakedeop
       permission-message: De-opped
    marry:
-         description: Marry anothe player.
-         usage: /<command> <name>
-         permission: wintercraft.marry
-         permission-message: You don't have permission to marry this player
+      description: Marry anothe player.
+      usage: /<command> <name>
+      permission: wintercraft.marry
+      permission-message: You don't have permission to marry this player
+   warp:
+      description: List all warps or warp to the specified location.
+      usage: /<command> <pagenumber|warp> [player]
+      aliases: [ewarp,warps,ewarps]

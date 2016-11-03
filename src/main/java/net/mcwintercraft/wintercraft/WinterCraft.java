@@ -1,5 +1,6 @@
 package net.mcwintercraft.wintercraft;
 
+import com.earth2me.essentials.Essentials;
 import net.mcwintercraft.wintercraft.cauldron.CauldronEvents;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsEvents;
 import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
@@ -12,36 +13,34 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class WinterCraft extends JavaPlugin implements Listener {
 	
 	private static WinterCraft plugin;
-	
-	private WinterCraftConfig playerwarpsconfig;
-	private WinterCraftConfig chatcolorsconfig;
-	private WinterCraftConfig chatsoundsconfig;
+    public static Essentials ess = null;
 
 	public void onEnable() {
+
+        Plugin EssentialsX = Bukkit.getPluginManager().getPlugin("Essentials");
+
+        if(EssentialsX instanceof Essentials) {
+            ess = (Essentials) EssentialsX;
+            this.getLogger().info("Using Essentials!");
+        } else {
+            this.getLogger().severe("Essentials not found!");
+        }
 		
 		plugin = this;
-		
-		playerwarpsconfig = WinterCraftConfig.getConfig("playerwarps");
-		chatcolorsconfig = WinterCraftConfig.getConfig("chatcolors");
-		chatsoundsconfig = WinterCraftConfig.getConfig("chatsounds");
-
-		//FileConfiguration playerwarpsfile = playerwarpsconfig.getConfig();
-		//FileConfiguration chatcolorsfile = chatcolorsconfig.getConfig();
-		//FileConfiguration chatsoundsfile = chatsoundsconfig.getConfig();
 
 		getCommand("color").setExecutor(new Commandchatcolor());
-		getCommand("mywarp").setExecutor(new Commandmywarp());
 		getCommand("vote").setExecutor(new Commandvote());
 		getCommand("rank").setExecutor(new Commandrank());
 		getCommand("website").setExecutor(new Commandwebsite());
 		getCommand("srfw").setExecutor(new Commandsrfw());
 		getCommand("sound").setExecutor(new Commandchatsound());
-		//getCommand("test").setExecutor(new Commandtest());
+		getCommand("test").setExecutor(new Commandtest());
 		getCommand("fakeop").setExecutor(new Commandfakeop());
 		getCommand("fakedeop").setExecutor(new Commandfakedeop());
         getCommand("marry").setExecutor(new CommandMarry());
 		
 		registerEvents(this,
+                new Voting(),
 				new ChatColorsEvents(),
 				new ChatSoundsEvents(),
 				new PreventCosmetics(),
@@ -55,13 +54,10 @@ public class WinterCraft extends JavaPlugin implements Listener {
 
 	public void onDisable() {
 		
-		this.playerwarpsconfig.saveConfig();
-		this.chatcolorsconfig.saveConfig();
-        this.chatsoundsconfig.saveConfig();
-		
 		plugin = null;
 		
 		this.getLogger().info("WinterCraft Disabled");
+
 	}
 	
 	private static void registerEvents(org.bukkit.plugin.Plugin plugin, Listener... listeners) {
