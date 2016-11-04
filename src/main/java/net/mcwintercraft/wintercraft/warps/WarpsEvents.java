@@ -37,5 +37,3 @@ public class WarpsEvents extends WarpsInventory implements Listener{
             }
         }
     }
-}
-///
