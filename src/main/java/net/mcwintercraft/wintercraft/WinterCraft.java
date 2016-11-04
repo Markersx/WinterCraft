@@ -5,6 +5,7 @@ import net.mcwintercraft.wintercraft.cauldron.CauldronEvents;
 import net.mcwintercraft.wintercraft.chatcolors.ChatColorsEvents;
 import net.mcwintercraft.wintercraft.chatsounds.ChatSoundsEvents;
 import net.mcwintercraft.wintercraft.commands.*;
+import net.mcwintercraft.wintercraft.warps.WarpsEvents;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -41,6 +42,7 @@ public class WinterCraft extends JavaPlugin implements Listener {
 		
 		registerEvents(this,
                 new Voting(),
+                new WarpsEvents(),
 				new ChatColorsEvents(),
 				new ChatSoundsEvents(),
 				new PreventCosmetics(),
