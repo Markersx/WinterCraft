@@ -77,7 +77,7 @@ public class ChatColorsEvents extends UserData implements Listener {
 		Inventory inventory = e.getInventory();
 		ItemStack clicked = e.getCurrentItem();
 		
-		if (inventory.getTitle().equals(ChatColorsInventory.colorinv.getName())) {
+		if (inventory.getName().equals(ChatColorsInventory.colorinv.getName())) {
 			
 			e.setCancelled(true);
 			

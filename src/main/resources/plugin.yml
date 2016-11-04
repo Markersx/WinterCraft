@@ -61,7 +61,3 @@ commands:
       usage: /<command> <name>
       permission: wintercraft.marry
       permission-message: You don't have permission to marry this player
-   warp:
-      description: List all warps or warp to the specified location.
-      usage: /<command> <pagenumber|warp> [player]
-      aliases: [ewarp,warps,ewarps]
