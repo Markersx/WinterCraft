@@ -1,5 +1,6 @@
 package net.mcwintercraft.wintercraft.commands;
 
+import net.mcwintercraft.wintercraft.WinterCraft;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -8,7 +9,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Commandfakedeop implements CommandExecutor {
-	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
+    private final WinterCraft wc;
+
+    public Commandfakedeop(WinterCraft wc) {
+        this.wc = wc;
+    }
+
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fakedeop")) {
 			// /fakedeop <player>
 			if (args.length == 1) {

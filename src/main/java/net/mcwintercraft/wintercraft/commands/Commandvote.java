@@ -1,44 +1,62 @@
 package net.mcwintercraft.wintercraft.commands;
 
+import com.vexsoftware.votifier.model.Vote;
+import com.vexsoftware.votifier.model.VotifierEvent;
 import mkremins.fanciful.FancyMessage;
-import net.ess3.api.IEssentials;
 import net.mcwintercraft.wintercraft.UserData;
 import net.mcwintercraft.wintercraft.WinterCraft;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 
-public class Commandvote extends UserData implements CommandExecutor {
+import static com.earth2me.essentials.utils.DateUtil.formatDateDiff;
+
+public class Commandvote implements CommandExecutor, Listener {
+
+    private final WinterCraft wc;
+    private FileConfiguration config;
+    List<String> links;
+    private final long tf = 86400000;
+
+    public Commandvote(WinterCraft wc) {
+        this.wc = wc;
+        config = wc.getConfig();
+        links = config.getStringList("vote-links");
+    }
+
+    //TODO: SOME VOTES RESET AFTER 12 HOURS
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("vote") && sender instanceof Player) {
-            FileConfiguration config = WinterCraft.getPlugin().getConfig();
-            List<String> links = config.getStringList("vote-links");
 			Player p = (Player) sender;
+            UserData user = new UserData(p, wc);
             FancyMessage fm = new FancyMessage("- VOTE LINKS -");
             fm.color(ChatColor.GREEN);
             fm.style(ChatColor.BOLD);
             fm.link("http://www.mcwintercraft.net/vote");
             fm.send(p);
             for(String s : links) {
-                String[] address;
-                address = s.split("\\.");
+                String[] address = s.split("\\.");
                 FancyMessage vl = new FancyMessage("[" + address[1].toUpperCase() + "]");
                 vl.color(ChatColor.AQUA);
                 vl.style(ChatColor.BOLD);
                 vl.link(s);
-                String as;
-                as = formatDateDiff(this.getVoteTimer(address[1]));
-                vl.tooltip(ChatColor.BOLD + as);
+                if (user.getVoteTimer(address[1]) >= System.currentTimeMillis()) {
+                    vl.tooltip(ChatColor.BOLD + "CLICK TO VOTE NOW!");
+                } else {
+                    vl.tooltip(ChatColor.BOLD + formatDateDiff(user.getVoteTimer(address[1])));
+                }
                 vl.send(p);
             }
-            FancyMessage tv = new FancyMessage("TOTAL VOTES: " + String.valueOf(this.getTotalVotes()));
+            FancyMessage tv = new FancyMessage("TOTAL VOTES: " + String.valueOf(user.getTotalVotes()));
             tv.color(ChatColor.AQUA);
             tv.style(ChatColor.BOLD);
             tv.send(p);
@@ -47,57 +65,32 @@ public class Commandvote extends UserData implements CommandExecutor {
 		return false;
 	}
 
-    private static String formatDateDiff(long date) {
-        GregorianCalendar c = new GregorianCalendar();
-        c.setTimeInMillis(date);
-        GregorianCalendar now = new GregorianCalendar();
-        return formatDateDiff(now, c);
-    }
-
-    private static String formatDateDiff(Calendar fromDate, Calendar toDate) {
-        boolean future = false;
-        if(toDate.equals(fromDate)) {
-            return "now";
-        } else {
-            if(toDate.after(fromDate)) {
-                future = true;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            int[] types = new int[]{1, 2, 5, 11, 12, 13};
-            String[] names = new String[]{"year", "years", "month", "months", "day", "days", "hour","hours", "minute", "minutes", "second", "seconds"};
-            int accuracy = 0;
-
-            for(int i = 0; i < types.length && accuracy <= 2; ++i) {
-                int diff = dateDiff(types[i], fromDate, toDate, future);
-                if(diff > 0) {
-                    ++accuracy;
-                    sb.append(" ").append(diff).append(" ").append(names[i * 2 + (diff > 1?1:0)]);
+    @EventHandler
+    public void onVote(VotifierEvent e) {
+        Vote vote = e.getVote();
+        String pn = vote.getUsername();
+        String[] address = vote.getAddress().split("\\.");
+        Long time = System.currentTimeMillis() + tf;
+        UserData s = new UserData(Bukkit.getPlayer(pn), wc);
+        s.setVotesTimer(address[1], time);
+        s.setTotalVotes(s.getTotalVotes() + 1);
+        wc.getServer().getScheduler().runTaskLater(wc, new Runnable() {
+            public void run() {
+                Player p = Bukkit.getPlayer(pn);
+                if (p.isOnline()) {
+                    FancyMessage vote = new FancyMessage("[" + address[1].toUpperCase() + "]");
+                    vote.color(ChatColor.AQUA);
+                    vote.style(ChatColor.BOLD);
+                    for (String s : links) {
+                        if (s.contains(address[1])) {
+                            vote.link(s);
+                        }
+                    }
+                    vote.tooltip(ChatColor.BOLD + "CLICK TO VOTE NOW!");
+                    vote.send(p);
+                    p.playSound(p.getLocation(), s.getMessageSound(), s.getMessageSoundVolume(), s.getMessageSoundPitch());
                 }
             }
-
-            return sb.length() == 0?"now":sb.toString().trim();
-        }
-    }
-
-    private static int dateDiff(int type, Calendar fromDate, Calendar toDate, boolean future) {
-        byte year = 1;
-        int fromYear = fromDate.get(year);
-        int toYear = toDate.get(year);
-        if(Math.abs(fromYear - toYear) > 100000) {
-            toDate.set(year, fromYear + (future?100000:-100000));
-        }
-
-        int diff = 0;
-
-        long savedDate;
-        for(savedDate = fromDate.getTimeInMillis(); future && !fromDate.after(toDate) || !future && !fromDate.before(toDate); ++diff) {
-            savedDate = fromDate.getTimeInMillis();
-            fromDate.add(type, future?1:-1);
-        }
-
-        --diff;
-        fromDate.setTimeInMillis(savedDate);
-        return diff;
+        }, tf);
     }
 }

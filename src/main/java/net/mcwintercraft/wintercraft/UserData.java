@@ -1,21 +1,45 @@
 package net.mcwintercraft.wintercraft;
 
-import com.earth2me.essentials.EssentialsUserConf;
-import com.earth2me.essentials.IConf;
-import net.ess3.api.IEssentials;
+import com.earth2me.essentials.PlayerExtension;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.io.File;
 
-public abstract class UserData implements IConf {
+public class UserData extends PlayerExtension {
 
-    private IEssentials ess = WinterCraft.ess;
-    private File folder = new File(ess.getDataFolder(), "userdata");
-    protected EssentialsUserConf config;
+    private final WinterCraftUserConfig config;
+    private final WinterCraft wc;
+    private final File folder;
+
+    public UserData(Player base, WinterCraft wc) {
+        super(base);
+        this.wc = wc;
+        folder = new File(wc.getDataFolder(), "userdata");
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String filename;
+        try {
+            filename = base.getUniqueId().toString();
+        } catch (Throwable e) {
+            filename = base.getName();
+        }
+        config = new WinterCraftUserConfig(base.getName(), base.getUniqueId(), new File(folder, filename + ".yml"));
+        config.setTemplateName("/userdata.yml");
+        reloadConfig();
+    }
 
     private int warpsMax;
 
     private int totalVotes;
+
+    private long totalTime;
+    private long activeTime;
+    private long AFKTime;
+
+    private long AFKSince;
+    private long activeSince;
 
     private String joinSound;
     private boolean joinSoundEnabled;
@@ -39,265 +63,323 @@ public abstract class UserData implements IConf {
     private boolean chatColorRandom;
     private boolean chatColorRainbow;
 
-    public void setUser(Player base) {
-        String filename;
-        try {
-            filename = base.getUniqueId().toString();
-        } catch (Throwable var5) {
-            ess.getLogger().warning("Falling back to old username system for " + base.getName());
-            filename = base.getName();
-        }
-
-        this.config = new EssentialsUserConf(base.getName(), base.getUniqueId(), new File(this.folder, filename + ".yml"));
-        this.reloadConfig();
-    }
-
     public final void reloadConfig() {
-        this.warpsMax = _getWarpsMax();
-
-        this.totalVotes = _getTotalVotes();
-
-        this.joinSound = _getJoinSound();
-        this.joinSoundEnabled = _isJoinSoundEnabled();
-        this.joinSoundVolume = _getJoinSoundVolume();
-        this.joinSoundPitch = _getJoinSoundPitch();
-        this.quitSoundSound = _getQuitSound();
-        this.quitSoundEnabled = _isQuitSoundEnabled();
-        this.quitSoundVolume = _getQuitSoundVolume();
-        this.quitSoundPitch = _getQuitSoundPitch();
-        this.messageSound = _getMessageSound();
-        this.messageSoundEnabled = _isMessageSoundEnabled();
-        this.messageSoundVolume = _getMessageSoundVolume();
-        this.messageSoundPitch = _getMessageSoundPitch();
-
-        this.chatColor = _getChatColor();
-        this.chatColorBold = _isChatColorBold();
-        this.chatColorUnderline = _isChatColorUnderline();
-        this.chatColorStrike = _isChatColorStrike();
-        this.chatColorMagic = _isChatColorMagic();
-        this.chatColorItalic = _isChatColorItalic();
-        this.chatColorRandom = _isChatColorRandom();
-        this.chatColorRainbow = _isChatColorRainbow();
+        config.load();
+        warpsMax = _getWarpsMax();
+        totalTime = _getTotalTime();
+        activeTime = _getActiveTime();
+        AFKTime = _getAFKTime();
+        totalVotes = _getTotalVotes();
+        joinSound = _getJoinSound();
+        joinSoundEnabled = _isJoinSoundEnabled();
+        joinSoundVolume = _getJoinSoundVolume();
+        joinSoundPitch = _getJoinSoundPitch();
+        quitSoundSound = _getQuitSound();
+        quitSoundEnabled = _isQuitSoundEnabled();
+        quitSoundVolume = _getQuitSoundVolume();
+        quitSoundPitch = _getQuitSoundPitch();
+        messageSound = _getMessageSound();
+        messageSoundEnabled = _isMessageSoundEnabled();
+        messageSoundVolume = _getMessageSoundVolume();
+        messageSoundPitch = _getMessageSoundPitch();
+        chatColor = _getChatColor();
+        chatColorBold = _isChatColorBold();
+        chatColorUnderline = _isChatColorUnderline();
+        chatColorStrike = _isChatColorStrike();
+        chatColorMagic = _isChatColorMagic();
+        chatColorItalic = _isChatColorItalic();
+        chatColorRandom = _isChatColorRandom();
+        chatColorRainbow = _isChatColorRainbow();
     }
 
     private int _getWarpsMax() {
-        return this.config.getInt("warps.max");
+        return config.getInt("warps.max");
     }
 
     public int getWarpsMax() {
-        return this.warpsMax;
+        return warpsMax;
     }
 
     public void setWarpsMax(int amount) {
-        this.config.set("warps.max", amount);
-        this.config.save();
+        config.setProperty("warps.max", amount);
+        config.save();
     }
 
     private int _getTotalVotes() {
-        return this.config.getInt("votes.total");
+        if (config.isSet("votes.total")) {
+            this.setTotalVotes(0);
+        }
+        return config.getInt("votes.total");
     }
 
     public int getTotalVotes() {
-        return this.totalVotes;
+        return totalVotes;
     }
 
     public void setTotalVotes(int votes) {
-        this.config.setProperty("totalVotes", votes);
-        this.config.save();
+        config.setProperty("votes.total", votes);
+        config.save();
     }
 
     public long getVoteTimer(String address) {
-        return this.config.getLong("votes." + address + ".lastVote");
+        if (!config.isSet("votes." + address)) {
+            this.setVotesTimer(address, System.currentTimeMillis());
+        }
+        return config.getLong("votes." + address);
     }
 
     public void setVotesTimer(String address, Long time) {
-        this.config.setProperty("votes." + address, time);
-        this.config.save();
+        config.setProperty("votes." + address, time);
+        config.save();
     }
 
     private String _getJoinSound() {
-        return this.config.getString("sounds.join.sound");
+        return config.getString("sounds.join.sound");
     }
 
     public String getJoinSound() {
-        return this.joinSound;
+        return joinSound;
     }
 
     private boolean _isJoinSoundEnabled() {
-        return this.config.getBoolean("sounds.join.enabled");
+        return config.getBoolean("sounds.join.enabled");
     }
 
     public boolean isJoinSoundEnabled() {
-        return this.joinSoundEnabled;
+        return joinSoundEnabled;
     }
 
     private int _getJoinSoundVolume() {
-        return this.config.getInt("sounds.join.volume");
+        return config.getInt("sounds.join.volume");
     }
 
-    public int getJoinSoundVolume() { return  this.joinSoundVolume; }
+    public int getJoinSoundVolume() { return joinSoundVolume; }
 
     private int _getJoinSoundPitch() {
-        return this.config.getInt("sounds.join.pitch");
+        return config.getInt("sounds.join.pitch");
     }
 
     public int getJoinSoundPitch() {
-        return this.joinSoundPitch;
+        return joinSoundPitch;
     }
 
     private String _getQuitSound() {
-        return this.config.getString("sounds.quit.sound");
+        return config.getString("sounds.quit.sound");
     }
 
     public String getQuitSound() {
-        return this.quitSoundSound;
+        return quitSoundSound;
     }
 
     private boolean _isQuitSoundEnabled() {
-        return this.config.getBoolean("sounds.quit.enabled");
+        return config.getBoolean("sounds.quit.enabled");
     }
 
     public boolean isQuitSoundEnabled() {
-        return this.quitSoundEnabled;
+        return quitSoundEnabled;
     }
 
     private int _getQuitSoundVolume() {
-        return this.config.getInt("sounds.quit.volume");
+        return config.getInt("sounds.quit.volume");
     }
 
     public int getQuitSoundVolume() {
-        return this.quitSoundVolume;
+        return quitSoundVolume;
     }
 
     private int _getQuitSoundPitch() {
-        return this.config.getInt("sounds.quit.pitch");
+        return config.getInt("sounds.quit.pitch");
     }
 
-    public int getQuitSoundPitch() { return this.quitSoundPitch; }
+    public int getQuitSoundPitch() { return quitSoundPitch; }
 
     private String _getMessageSound() {
-        return this.config.getString("sounds.message.sound");
+        if (!config.isSet("sounds.message.sound")) {
+            setSound("message", Sound.ENTITY_EXPERIENCE_ORB_TOUCH.toString());
+        }
+        return config.getString("sounds.message.sound");
     }
 
     public String getMessageSound() {
-        return this.messageSound;
+        return messageSound;
     }
 
     private boolean _isMessageSoundEnabled() {
-        return this.config.getBoolean("sounds.message.enabled");
+        return config.getBoolean("sounds.message.enabled");
     }
 
     public boolean isMessageSoundEnabled() {
-        return this.messageSoundEnabled;
+        return messageSoundEnabled;
     }
 
     private int _getMessageSoundVolume() {
-        return this.config.getInt("sounds.message.volume");
+        return config.getInt("sounds.message.volume");
     }
 
     public int getMessageSoundVolume() {
-        return this.messageSoundVolume;
+        return messageSoundVolume;
     }
 
     private int _getMessageSoundPitch() {
-        return this.config.getInt("sounds.message.pitch");
+        return config.getInt("sounds.message.pitch");
     }
 
     public int getMessageSoundPitch() {
-        return this.messageSoundPitch;
+        return messageSoundPitch;
     }
 
     public void setSound(String type, String sound) {
-        this.config.setProperty("sounds." + type + ".sound", sound);
-        this.config.save();
+        config.setProperty("sounds." + type + ".sound", sound);
+        config.save();
     }
 
     public void setSoundEnabled(String type, boolean enabled) {
-        this.config.setProperty("sounds." + type + ".enabled", enabled);
-        this.config.save();
+        config.setProperty("sounds." + type + ".enabled", enabled);
+        config.save();
     }
 
     public void setSoundVolume(String type, int volume) {
-        this.config.setProperty("sounds." + type + ".volume", volume);
-        this.config.save();
+        config.setProperty("sounds." + type + ".volume", volume);
+        config.save();
     }
 
     public void setSoundPitch(String type, int pitch) {
-        this.config.setProperty("sounds." + type + ".pitch", pitch);
-        this.config.save();
+        config.setProperty("sounds." + type + ".pitch", pitch);
+        config.save();
     }
 
     private String _getChatColor() {
-        return this.config.getString("sounds.color");
+        if (!config.isSet("chatColor.color")) {
+            setChatColor("WHITE");
+        }
+        return config.getString("chatColor.color");
     }
 
     public String getChatColor() {
-        return this.chatColor;
+        return chatColor;
     }
 
     public void setChatColor(String color) {
-        this.config.setProperty("chatColor.color", color);
-        this.config.save();
+        config.setProperty("chatColor.color", color);
+        config.save();
     }
 
     private boolean _isChatColorBold() {
-        return this.config.getBoolean("chatColor.bold");
+        return config.getBoolean("chatColor.bold");
     }
 
     public boolean isChatColorBold() {
-        return  this.chatColorBold;
+        return chatColorBold;
     }
 
     private boolean _isChatColorUnderline() {
-        return this.config.getBoolean("chatColor.underline");
+        return config.getBoolean("chatColor.underline");
     }
 
     public boolean isChatColorUnderline() {
-        return this.chatColorUnderline;
+        return chatColorUnderline;
     }
 
     private boolean _isChatColorStrike() {
-        return this.config.getBoolean("chatColor.strike");
+        return config.getBoolean("chatColor.strikethrough");
     }
 
     public boolean isChatColorStrike() {
-        return this.chatColorStrike;
+        return chatColorStrike;
     }
 
     private boolean _isChatColorMagic() {
-        return this.config.getBoolean("chatColor.magic");
+        return config.getBoolean("chatColor.magic");
     }
 
     public boolean isChatColorMagic() {
-        return this.chatColorMagic;
+        return chatColorMagic;
     }
 
     private boolean _isChatColorItalic() {
-        return this.config.getBoolean("chatColor.italic");
+        return config.getBoolean("chatColor.italic");
     }
 
     public boolean isChatColorItalic() {
-        return this.chatColorItalic;
+        return chatColorItalic;
     }
 
     private boolean _isChatColorRandom() {
-        return this.config.getBoolean("chatColor.random");
+        return config.getBoolean("chatColor.random");
     }
 
     public boolean isChatColorRandom() {
-        return this.chatColorRandom;
+        return chatColorRandom;
     }
 
     private boolean _isChatColorRainbow() {
-        return this.config.getBoolean("chatColor.rainbow");
+        return config.getBoolean("chatColor.rainbow");
     }
 
     public boolean isChatColorRainbow() {
-        return this.chatColorRainbow;
+        return chatColorRainbow;
     }
 
     public void setChatColorStyle(String style, boolean enabled) {
-        this.config.setProperty("chatColor." + style, enabled);
-        this.config.save();
+        config.setProperty("chatColor." + style, enabled);
+        config.save();
+    }
+
+    public WinterCraftUserConfig getConfig() {
+        return config;
+    }
+
+    private long _getTotalTime() {
+        return config.getLong("totalTime");
+    }
+
+    public Long getTotalTime() {
+        return totalTime;
+    }
+
+    public void setTotalTime(Long time) {
+        config.setProperty("totalTime", time);
+    }
+
+    private Long _getActiveTime() {
+        return config.getLong("activeTime");
+    }
+
+    public Long getActiveTime() {
+        return activeTime;
+    }
+
+    public void setActiveTime(Long time) {
+        config.setProperty("activeTime", time);
+        config.save();
+    }
+
+    public long getActiveSince() {
+        return activeSince;
+    }
+
+    public void setActiveSince(long time) {
+        this.activeSince = time;
+    }
+
+    private Long _getAFKTime() {
+        return config.getLong("AFKTime");
+    }
+
+    public Long getAFKTime() {
+        return AFKTime;
+    }
+
+    public void setAFKTime(Long time) {
+        config.setProperty("AFKTime", time);
+        config.save();
+    }
+
+    public long getAFKSince() {
+        return AFKSince;
+    }
+
+    public void setAFKSince(long time) {
+        this.AFKSince = time;
     }
 }

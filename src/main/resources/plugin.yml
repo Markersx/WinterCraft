@@ -2,7 +2,8 @@ name: WinterCraft
 main:  net.mcwintercraft.wintercraft.WinterCraft
 version: 0.0.1
 authors: [Markersx, Pentahexide]
-depends: [Votifier]
+load: STARTUP
+depend: [ProtocolLib, Votifier]
 commands:
    color:
       description: Opens ChatColor options.
@@ -19,28 +20,28 @@ commands:
       description: Vote links.
       usage: /vote
       permission: wintercraft.vote
-      permission-message: Lol report this to an admin.
+      permission-message: Please report this to an admin thx <3
    website:
       description: Displays website link.
       usage: /website
       permission: wintercraft.website
-      permission-message: Lol report this an admin.
+      permission-message: Please report this to an admin thx <3
    rank:
       description: Displays all ranks.
       usage: /rank
       aliases: [ranks]
       permission: wintercraft.ranks
-      permission-message: Lol report this to an admin.
+      permission-message: Please report this to an admin thx <3
    srfw:
       description: shoot random firework.
       usage: /<command> <player> <amount> <radius>
       permission: wintercraft.srfw
-      permission-message: nah
+      permission-message: Pew Pew
    sound:
-      description: sound options
+      description: Sound options
       usage: /<command>
       permission: wintercraft.chatsound
-      permission-message: report this to an admin.
+      permission-message: Please report this to an admin thx <3
    sl:
       description: Toggles spectator location reversion.
       usage: /<command>
@@ -48,16 +49,40 @@ commands:
       permission-message: You're not allowed to do that.
    fakeop:
       description: Fake op players.
-      usage: /<command> <name> or /<command> *
+      usage: /<command> <player> or /<command> *
       permission: wintercraft.fakeop
       permission-message: Opped
    fakedeop:
       description: Fake deop players.
-      usage: /<command> <name> or /<command> *
+      usage: /<command> <player> or /<command> *
       permission: wintercraft.fakedeop
       permission-message: De-opped
+   freeze:
+      description: Freeze players.
+      usage: /<command> <player>
+      permission: wintercraft.freeze
+      permission-message: You have been frozen
    marry:
       description: Marry anothe player.
       usage: /<command> <name>
       permission: wintercraft.marry
       permission-message: You don't have permission to marry this player
+   playtime:
+      description: Displays player time statistics
+      usage: /<command> <player>
+      permission: wintercraft.playtime
+      permission-message: Please report this to an admin thx <3
+   endercrate:
+      description: EnderCrate stuff.
+      usage: /<command> <create|key> <amount>
+      permission: wintercraft.endercrate
+      permission-message:
+   enchants:
+      description: Displays info about all enchantments.
+      usage: /<command>
+      permission: wintercraft.enchants
+      permission-message: Please report this to an admin thx <3
+   setwarp:
+      description: Creates a new warp.
+      usage: /<command> <warp>
+      aliases: [createwarp,ecreatewarp,esetwarp]

@@ -1,0 +1,30 @@
+warps:
+  max:
+  list:
+votes:
+  total: 0
+chatColor:
+  color: WHITE
+  bold: false
+  underline: false
+  strikethrough: false
+  magic: false
+  italic: false
+  random: false
+  rainbow: false
+sounds:
+  join:
+    sound: ENTITY_EXPERIENCE_ORB_TOUCH
+    enabled: true
+    volume: 10
+    pitch: 10
+  quit:
+    sound: ENTITY_EXPERIENCE_ORB_TOUCH
+    enabled: true
+    volume: 10
+    pitch: 10
+  message:
+    sound: BLOCK_NOTE_HAT
+    enabled: true
+    volume: 10
+    pitch: 10

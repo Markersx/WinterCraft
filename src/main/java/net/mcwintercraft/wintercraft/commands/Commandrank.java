@@ -1,6 +1,7 @@
 package net.mcwintercraft.wintercraft.commands;
 
 import mkremins.fanciful.FancyMessage;
+import net.ess3.api.IUser;
 import net.mcwintercraft.wintercraft.WinterCraft;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -10,9 +11,17 @@ import org.bukkit.entity.Player;
 
 public class Commandrank implements CommandExecutor {
 
+    private final WinterCraft wc;
+
+    public Commandrank(WinterCraft wc) {
+        this.wc = wc;
+    }
+
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("rank") && sender instanceof Player) {
+
 			Player p = (Player) sender;
+            IUser user = WinterCraft.ess.getUser(p);
 
 			FancyMessage fm = new FancyMessage("- DONOR RANKS -\n");
 			fm.color(ChatColor.GREEN);
@@ -120,7 +129,7 @@ public class Commandrank implements CommandExecutor {
 					ChatColor.BOLD + "- Spectate");
 			fm.link("http://www.mcwintercraft.net/apply");
 			
-			fm.then("[ADMIN]");
+			fm.then("[ADMIN]\n");
 			fm.color(ChatColor.RED);
 			fm.style(ChatColor.BOLD);
 			fm.tooltip(ChatColor.BOLD + "- Teleport\n" + 
@@ -128,17 +137,15 @@ public class Commandrank implements CommandExecutor {
 					ChatColor.BOLD + "- Vanish");
 			fm.link("http://www.mcwintercraft.net/apply");
 
-            fm.then("- CURRENT RANK -");
-            fm.color(ChatColor.GREEN);
-            fm.style(ChatColor.BOLD);
-            fm.then(WinterCraft.ess.getUser(p).getGroup().toUpperCase());
-            fm.style(ChatColor.BOLD);
+            //fm.then("- CURRENT RANK -\n");
+            //fm.color(ChatColor.GREEN);
+            //fm.style(ChatColor.BOLD);
+            //fm.then("[" + user.getGroup().toUpperCase() + "]");
+            //fm.style(ChatColor.BOLD);
 
 			fm.send(p);
 			return true;
-		} else {
-			sender.sendMessage("Lol no");
-			return true;
 		}
+		return false;
 	}
 }

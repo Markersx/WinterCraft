@@ -1,5 +1,6 @@
-package net.mcwintercraft.wintercraft;
+package net.mcwintercraft.wintercraft.misc;
 
+import net.mcwintercraft.wintercraft.WinterCraft;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
@@ -11,9 +12,15 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
-class PreventCosmetics implements Listener {
-	
-	//Prevent selling cosmetic items signs
+public class PreventCosmetics implements Listener {
+
+    private WinterCraft wc;
+
+    public PreventCosmetics(WinterCraft wc) {
+        this.wc = wc;
+    }
+
+    //Prevent selling cosmetic items signs
 	
 	@EventHandler
 	public void onClick(PlayerInteractEvent ev) {

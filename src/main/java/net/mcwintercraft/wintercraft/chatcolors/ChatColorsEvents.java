@@ -2,6 +2,7 @@ package net.mcwintercraft.wintercraft.chatcolors;
 
 import net.mcwintercraft.wintercraft.UserData;
 import net.mcwintercraft.wintercraft.WinterCraft;
+import net.mcwintercraft.wintercraft.WinterCraftUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -13,45 +14,53 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.material.Wool;
 
 import java.util.Random;
 
-public class ChatColorsEvents extends UserData implements Listener {
+public class ChatColorsEvents implements Listener {
+
+    private final WinterCraft wc;
+    private ChatColorsInventory ccinv;
+
+    public ChatColorsEvents(WinterCraft wc) {
+        this.wc = wc;
+        this.ccinv = new ChatColorsInventory(wc);
+    }
 
     @EventHandler
 	public void onSendMessage(AsyncPlayerChatEvent e) {
 
-        this.setUser(e.getPlayer());
 		String msg = e.getMessage();
+        Player p = e.getPlayer();
+        UserData user = new UserData(p, wc);
 		String codes = "";
-		String color = this.getChatColor();
+		String color = user.getChatColor();
 
-		if (this.isChatColorBold()) {
+		if (user.isChatColorBold()) {
 			codes = codes + ChatColor.BOLD;
 		}
 
-		if (this.isChatColorUnderline()) {
+		if (user.isChatColorUnderline()) {
 			codes = codes + ChatColor.UNDERLINE;
 		}
 
-		if (this.isChatColorStrike()) {
+		if (user.isChatColorStrike()) {
 			codes = codes + ChatColor.STRIKETHROUGH;
 		}
 
-		if (this.isChatColorMagic()) {
+		if (user.isChatColorMagic()) {
 			codes = codes + ChatColor.MAGIC;
 		}
 
-		if (this.isChatColorItalic()) {
+		if (user.isChatColorItalic()) {
 			codes = codes + ChatColor.ITALIC;
 		}
 
-		if (this.isChatColorRandom()) {
+		if (user.isChatColorRandom()) {
 			color = rc();
 		}
 
-		if (this.isChatColorRainbow()) {
+		if (user.isChatColorRainbow()) {
 			
 			String[] ms = msg.split("");
 			msg = "";
@@ -73,11 +82,11 @@ public class ChatColorsEvents extends UserData implements Listener {
 	public void onInv(InventoryClickEvent e) {
 
 		Player p = (Player) e.getWhoClicked();
-        this.setUser(p);
+        UserData user = new UserData(p, wc);
 		Inventory inventory = e.getInventory();
 		ItemStack clicked = e.getCurrentItem();
 		
-		if (inventory.getName().equals(ChatColorsInventory.colorinv.getName())) {
+		if (inventory.getName().equals(ccinv.colorinv.getName())) {
 			
 			e.setCancelled(true);
 			
@@ -86,26 +95,20 @@ public class ChatColorsEvents extends UserData implements Listener {
 				String cl = clicked.getItemMeta().getDisplayName();
 				
 				if (cl.equals(gc(cl))) {
-                    this.setChatColor(cl.replace(" ", "_").substring(2));
+                    user.setChatColor(cl.replace(" ", "_").substring(2));
 					ench(inventory, clicked);
 				}
 
 				if (cl.equals(gs(cl))) {
 
                     String s = cl.toLowerCase().substring(4);
-					Boolean bol = gsb(cl);
-                    WinterCraft.ess.getUser(p).setConfigProperty("chatColor" + "." + s,!bol);
+					Boolean bol = gsb(cl, user);
+                    user.setChatColorStyle(s,!bol);
 
 					if (!bol) {
-						Wool g = new Wool(DyeColor.LIME);
-						ItemStack wis = g.toItemStack();
-						clicked.setData(g);
-						clicked.setDurability(wis.getDurability());
+                        WinterCraftUtil.setWoolColor(clicked, DyeColor.LIME);
 					} else {
-                        Wool w = new Wool(DyeColor.WHITE);
-                        ItemStack wis = w.toItemStack();
-                        clicked.setData(w);
-                        clicked.setDurability(wis.getDurability());
+                        WinterCraftUtil.setWoolColor(clicked, DyeColor.WHITE);
                     }
 				}
 			}
@@ -116,53 +119,53 @@ public class ChatColorsEvents extends UserData implements Listener {
 		String ss = null;
 		switch (cl.substring(4)) {
 		case "BOLD":
-			ss = ChatColorsInventory.bold_name;
+			ss = ccinv.bold_name;
 			break;
 		case "UNDERLINE":
-			ss = ChatColorsInventory.underline_name;
+			ss = ccinv.underline_name;
 			break;
 		case "STRIKETHROUGH":
-			ss = ChatColorsInventory.strike_name;
+			ss = ccinv.strike_name;
 			break;
 		case "MAGIC":
-			ss = ChatColorsInventory.magic_name;
+			ss = ccinv.magic_name;
 			break;
 		case "ITALIC":
-			ss = ChatColorsInventory.italic_name;
+			ss = ccinv.italic_name;
 			break;
 		case "RANDOM":
-			ss = ChatColorsInventory.random_name;
+			ss = ccinv.random_name;
 			break;
 		case "RAINBOW":
-			ss = ChatColorsInventory.rainbow_name;
+			ss = ccinv.rainbow_name;
 			break;
 		}
 		return ss;
 	}
 
-    private boolean gsb(String cl) {
+    private boolean gsb(String cl, UserData user) {
         boolean ssb = false;
         switch (cl.substring(4)) {
             case "BOLD":
-                ssb = this.isChatColorBold();
+                ssb = user.isChatColorBold();
                 break;
             case "UNDERLINE":
-                ssb = this.isChatColorUnderline();
+                ssb = user.isChatColorUnderline();
                 break;
             case "STRIKETHROUGH":
-                ssb = this.isChatColorStrike();
+                ssb = user.isChatColorStrike();
                 break;
             case "MAGIC":
-                ssb = this.isChatColorMagic();
+                ssb = user.isChatColorMagic();
                 break;
             case "ITALIC":
-                ssb = this.isChatColorItalic();
+                ssb = user.isChatColorItalic();
                 break;
             case "RANDOM":
-                ssb = this.isChatColorRainbow();
+                ssb = user.isChatColorRainbow();
                 break;
             case "RAINBOW":
-                ssb = this.isChatColorRainbow();
+                ssb = user.isChatColorRainbow();
                 break;
         }
         return ssb;
@@ -172,55 +175,55 @@ public class ChatColorsEvents extends UserData implements Listener {
 		String cs;
 		switch (cl.substring(2)) {
 		case "AQUA":
-			cs = ChatColorsInventory.aqua_name;
+			cs = ccinv.aqua_name;
 			break;
 		case "BLACK":
-			cs = ChatColorsInventory.black_name;
+			cs = ccinv.black_name;
 			break;
 		case "BLUE":
-			cs = ChatColorsInventory.blue_name;
+			cs = ccinv.blue_name;
 			break;
 		case "DARK AQUA":
-			cs = ChatColorsInventory.dark_aqua_name;
+			cs = ccinv.dark_aqua_name;
 			break;
 		case "DARK BLUE":
-			cs = ChatColorsInventory.dark_blue_name;
+			cs = ccinv.dark_blue_name;
 			break;
 		case "DARK GRAY":
-			cs = ChatColorsInventory.dark_gray_name;
+			cs = ccinv.dark_gray_name;
 			break;
 		case "DARK GREEN":
-			cs = ChatColorsInventory.dark_green_name;
+			cs = ccinv.dark_green_name;
 			break;
 		case "DARK PURPLE":
-			cs = ChatColorsInventory.dark_purple_name;
+			cs = ccinv.dark_purple_name;
 			break;
 		case "DARK RED":
-			cs = ChatColorsInventory.dark_red_name;
+			cs = ccinv.dark_red_name;
 			break;
 		case "GOLD":
-			cs = ChatColorsInventory.gold_name;
+			cs = ccinv.gold_name;
 			break;
 		case "GRAY":
-			cs = ChatColorsInventory.gray_name;
+			cs = ccinv.gray_name;
 			break;
 		case "GREEN":
-			cs = ChatColorsInventory.green_name;
+			cs = ccinv.green_name;
 			break;
 		case "LIGHT PURPLE":
-			cs = ChatColorsInventory.light_purple_name;
+			cs = ccinv.light_purple_name;
 			break;
 		case "RED":
-			cs = ChatColorsInventory.red_name;
+			cs = ccinv.red_name;
 			break;
 		case "WHITE":
-			cs = ChatColorsInventory.white_name;
+			cs = ccinv.white_name;
 			break;
 		case "YELLOW":
-			cs = ChatColorsInventory.yellow_name;
+			cs = ccinv.yellow_name;
 			break;
 		default:
-			cs = ChatColorsInventory.white_name;
+			cs = ccinv.white_name;
 			break;
 		}
 		return cs;
@@ -301,18 +304,4 @@ public class ChatColorsEvents extends UserData implements Listener {
 		}
 		return cs;
 	}
-	
-	//private void loadchatcolorsconfig(String puuid, Player p) {
-	//	config.getConfig().set(puuid + ".name", p.getName());
-	//	config.getConfig().set(puuid + ".color", "WHITE");
-	//	config.getConfig().set(puuid + ".bold", Boolean.FALSE);
-	//	config.getConfig().set(puuid + ".underline", Boolean.FALSE);
-	//	config.getConfig().set(puuid + ".strikethrough", Boolean.FALSE);
-	//	config.getConfig().set(puuid + ".magic", Boolean.FALSE);
-	//	config.getConfig().set(puuid + ".italic", Boolean.FALSE);
-	//	config.getConfig().set(puuid + ".random", Boolean.FALSE);
-	//	config.getConfig().set(puuid + ".rainbow", Boolean.FALSE);
-	//	config.saveConfig();
-	//	config.reloadConfig();
-	//}
 }
